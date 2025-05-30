@@ -1,0 +1,43 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: calc(100% - 160px);
+    padding: 0 80px;
+    background-color: red;
+}
+
+h1{
+    
+}
+
+label{
+    display: flex;
+    position: relative;
+    height: 32px;
+    width: 240px;
+}
+
+button{
+    width: 32px;
+    height: 100%;
+    border-radius: 50%;
+    position: absolute;
+    right: 0;
+    border: 4px solid black;
+    cursor: pointer;
+}
+
+input{
+    width: 100%;
+    border: 4px solid black;
+    border-radius: 40px;
+    padding: 0 40px 0 16px;
+}
+
+img{
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+}
