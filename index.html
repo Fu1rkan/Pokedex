@@ -5,18 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
 
+    <script src="./js/filter.js"></script>
+    <script src="./js/script.js"></script>
+
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <header>
-        <h1>Pokedex</h1>
-        <label for="">
-            <input type="text" placeholder="name">
-            <button>
-                <img src="./img/search.png" alt="" class="search_logo">
-            </button>
-        </label>
-        <img src="./img/filter.png" alt="">
+        <nav>
+            <h1>Pokedex</h1>
+            <label for="">
+                <input type="text" placeholder="name">
+                <button>
+                    <img src="./img/search.png" alt="" class="search_logo">
+                </button>
+            </label>
+            <img src="./img/filter.png" alt="">
+        </nav>
     </header>
+    <div class="empty_div"></div>
+    <section class="filter_menu">
+        <div class="filter_type">
+            <p onclick="open_filter_menu()">Filter by Type:</p>
+            <div class="type_img" id="type-img">
+                <img src="./img/1.png" alt="">
+                <img src="./img/2.png" alt="">
+                <img src="./img/3.png" alt="">
+                <img src="./img/4.png" alt="">
+                <img src="./img/5.png" alt="">
+                <img src="./img/6.png" alt="">
+                <img src="./img/7.png" alt="">
+                <img src="./img/8.png" alt="">
+                <img src="./img/9.png" alt="">
+                <img src="./img/10.png" alt="">
+                <img src="./img/11.png" alt="">
+                <img src="./img/12.png" alt="">
+                <img src="./img/13.png" alt="">
+                <img src="./img/14.png" alt="">
+                <img src="./img/15.png" alt="">
+                <img src="./img/16.png" alt="">
+                <img src="./img/17.png" alt="">
+                <img src="./img/18.png" alt="">
+            </div>
+        </div>
+        <p class="filter_type">A-Z</p>
+        <p class="filter_type">1-1000</p>
+    </section>
 </body>
 </html>

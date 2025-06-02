@@ -1,0 +1,42 @@
+.filter_menu{
+    padding: 8px 8px;
+    margin: 120px 80px 0 80px;
+    border-radius: 16px;
+    background-color: rgba(182, 182, 182, 0.356);
+}
+
+.filter_menu{
+    display: flex;
+    justify-content: flex-start;
+    gap: 8px;
+
+
+    p:hover{
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.filter_type{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgb(190, 187, 187);
+    padding: 4px 8px;
+    border-radius: 16px;
+
+    p{
+        padding: 6px 0;
+    }
+}
+
+.type_img{
+    display: flex;
+    gap: 4px;
+    img{
+        width: 32px;
+        height: auto;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}
