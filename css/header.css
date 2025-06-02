@@ -4,12 +4,14 @@ header{
     align-items: center;
     position: fixed;
     width: calc(100% - 160px);
-    padding: 0 80px;
-    background-color: red;
+    padding: 24px 80px;
+    background-color: rgb(255, 0, 0);
+    position: relative;
+    box-shadow: 0 0 16px 0px rgb(255, 0, 0);
 }
 
 h1{
-    
+    font-size: 40px;
 }
 
 label{
@@ -17,6 +19,9 @@ label{
     height: 32px;
     width: 240px;
     transition: 250ms;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 button{
