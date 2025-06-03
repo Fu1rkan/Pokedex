@@ -1,0 +1,50 @@
+.main_section{
+    min-height: 100vh;
+    width: calc(100% - 160px);
+    margin: 26px 80px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.pokemon_card{
+    width: 200px;
+    height: 300px;
+    border: 4px solid black;
+    border-radius: 16px;
+    background-color: red;
+    cursor: pointer;
+    transition: 250ms;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon_card:hover{
+    transform: scale(1.02);
+}
+
+.name_and_id{
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemon_type{
+    display: flex;
+    justify-content: center;
+    padding: 0 8px;
+    gap: 8px;
+
+    img{
+        width: 80px;
+        height: auto;
+        border-radius: 16px;
+    }
+}
+
+.pokemon_img{
+    width: 196px;
+    height: auto;
+}

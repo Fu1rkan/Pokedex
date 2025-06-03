@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
 
-    <script src="./js/filter.js"></script>
-    <script src="./js/script.js"></script>
+    <script src="./script/filter.js"></script>
+    <script src="./script/script.js"></script>
 
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./style/style.css">
 </head>
 <body>
     <header>
@@ -23,10 +23,9 @@
             <img src="./img/filter.png" alt="">
         </nav>
     </header>
-    <div class="empty_div"></div>
     <section class="filter_menu">
         <div class="filter_type">
-            <p onclick="open_filter_menu()">Filter by Type:</p>
+            <p onclick="openTypeBar()">Filter by Type:</p>
             <div class="type_img" id="type-img">
                 <img src="./img/1.png" alt="">
                 <img src="./img/2.png" alt="">
@@ -50,6 +49,19 @@
         </div>
         <p class="filter_type">A-Z</p>
         <p class="filter_type">1-1000</p>
+    </section>
+    <section class="main_section">
+        <div class="pokemon_card">
+            <div class="name_and_id">
+                <h3>Glurak</h3>
+                <p>#6</p>
+            </div>
+            <img src="./img/glurak.png" alt="" class="pokemon_img">
+            <div class="pokemon_type">
+                <img src="./img/fire.png" alt="">
+                <img src="./img/flying.png" alt="">
+            </div>
+        </div>
     </section>
 </body>
 </html>

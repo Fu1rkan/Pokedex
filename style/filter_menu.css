@@ -1,31 +1,48 @@
 .filter_menu{
-    padding: 8px 8px;
+    padding: 8px 32px;
     margin: 120px 80px 0 80px;
     border-radius: 16px;
     background-color: rgba(182, 182, 182, 0.356);
-}
-
-.filter_menu{
     display: flex;
     justify-content: flex-start;
     gap: 8px;
 
+    p{
+        transition: 300ms;
+        cursor: pointer;
+    }
+
+    p:active{
+        padding: 0px 0px;
+    }
 
     p:hover{
         text-decoration: underline;
-        cursor: pointer;
     }
 }
 
 .filter_type{
     display: flex;
     align-items: center;
-    gap: 8px;
-    background-color: rgb(190, 187, 187);
+    background-color: rgb(198, 198, 198);
     padding: 4px 8px;
-    border-radius: 16px;
+    border-radius: 8px;
+    border: 2px solid black;
+    
     p{
-        padding: 6px 0;
+        padding: 4px 8px; 
+    }
+
+    p:hover{
+        text-decoration: underline;
+        cursor: pointer;
+        padding-right: 12px;
+        transition: 100ms ease-out;
+    }
+
+    p:active{
+        padding-right: 0;
+        padding-left: 8px;
     }
 }
 
@@ -41,4 +58,8 @@
         border-radius: 50%;
         cursor: pointer;
     }
+}
+
+.activate_type_menu{
+    max-width: 1000px;
 }

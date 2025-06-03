@@ -6,6 +6,7 @@ header{
     background-color: rgb(255, 0, 0);
     position: fixed;
     box-shadow: 0 0 16px 0px rgb(255, 0, 0);
+    z-index: 1;
 }
 
 nav{
