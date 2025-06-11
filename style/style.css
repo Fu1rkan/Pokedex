@@ -2,6 +2,7 @@
 @import url(./filter_menu.css);
 @import url(./main_section.css);
 @import url(./pokemon_overlay.css);
+@import url(./pokemon_info.css);
 
 *{
     margin: 0;
@@ -16,4 +17,8 @@
          url(../fonts/OpenSans-VariableFont_wdth\,wght.ttf);
     font-weight: normal;
     font-style: normal;
+}
+
+.d_none{
+    display: none;
 }

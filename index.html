@@ -76,25 +76,24 @@
             <div class="pokemon_img_container_main_pokemon_overlay">
                 <img src="./img/glurak.png" alt="" class="pokemon_img_main_pokemon_overlay">
                 <img src="./img/pokeball.png" alt="" class="pokeball_bg">
-                <img src="./img/podium.png" alt="" class="podium_bg">
             </div>
             <div class="pokemon_type_main_pokemon_overlay">
-                <div class="pokemon_type_container_main_pokemon_overlay">
-                    <img src="./img/fire.png" alt="">
-                </div>
-                <div class="pokemon_type_container_main_pokemon_overlay">
-                    <img src="./img/flying.png" alt="">
-                </div>
+                <img src="./img/fire.png" alt="">
+                <img src="./img/flying.png" alt="">
             </div>
             <div class="pokemon_info_bar">
-                <div class="pokemon_info_type">main</div>
-                <div class="pokemon_info_type">stats</div>
-                <div class="pokemon_info_type">evo chain</div>
+                <div class="pokemon_info_type pokemon_info_type_border" onclick="setActiveOverlay('info-about', 'about-overlay')" id="info-about">about</div>
+                <div class="pokemon_info_type" onclick="setActiveOverlay('info-stats', 'stats-overlay')" id="info-stats">stats</div>
+                <div class="pokemon_info_type" onclick="setActiveOverlay('info-evo-chain', 'evo-chain-overlay')" id="info-evo-chain">evo chain</div>
             </div>
-            <div class="pokemon_info">
+            <div class="about_overlay" id="about-overlay">
+                
+            </div>
+            <div class="stats_overlay d_none" id="stats-overlay">
                 <table>
                     <tr>
                         <td class="stats">hp</td>
+                        <td class="stats_percentage">80</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
                                 <div class="stats_bar"></div>
@@ -103,6 +102,7 @@
                     </tr>
                     <tr>
                         <td class="stats">attack</td>
+                        <td class="stats_percentage">80</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
                                 <div class="stats_bar"></div>
@@ -111,6 +111,7 @@
                     </tr>
                     <tr>
                         <td class="stats">defense</td>
+                        <td class="stats_percentage">80</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
                                 <div class="stats_bar"></div>
@@ -119,6 +120,7 @@
                     </tr>
                     <tr>
                         <td class="stats">special-attack</td>
+                        <td class="stats_percentage">80</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
                                 <div class="stats_bar"></div>
@@ -127,6 +129,7 @@
                     </tr>
                     <tr>
                         <td class="stats">special-defense</td>
+                        <td class="stats_percentage">80</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
                                 <div class="stats_bar"></div>
@@ -135,6 +138,7 @@
                     </tr>
                     <tr>
                         <td class="stats">speed</td>
+                        <td class="stats_percentage">80</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
                                 <div class="stats_bar"></div>
@@ -143,7 +147,11 @@
                     </tr>
                 </table>
             </div>
+            <div class="evo_chain_overlay d_none" id="evo-chain-overlay">
+
+            </div>
         </div>
     </section>
+    <script src="./script/pokemon_overlay.js"></script>
 </body>
 </html>

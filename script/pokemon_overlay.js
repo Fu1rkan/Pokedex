@@ -1,0 +1,10 @@
+function setActiveOverlay(activeBar, activeOverlay){
+    let barId = ['info-about', 'info-stats', 'info-evo-chain'];
+    let overlayId = ['about-overlay', 'stats-overlay', 'evo-chain-overlay'];
+
+    barId.forEach(bar => document.getElementById(bar).classList.remove('pokemon_info_type_border'));
+    overlayId.forEach(overlay => document.getElementById(overlay).classList.add('d_none'));
+
+    document.getElementById(activeBar).classList.add('pokemon_info_type_border');
+    document.getElementById(activeOverlay).classList.remove('d_none');
+}
