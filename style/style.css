@@ -22,3 +22,7 @@
 .d_none{
     display: none;
 }
+
+.t_bold{
+    font-weight: 700;
+}

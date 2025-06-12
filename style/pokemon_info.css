@@ -32,6 +32,29 @@
     background-color: rgb(78, 81, 81);
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
+    overflow-y: scroll;
+    scrollbar-color: rgb(255, 0, 0) transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+hr{
+    width: 100%;
+    margin: 16px 0;
+    height: 2px;
+    border: none;
+    background-color: rgb(123, 123, 123);
+}
+
+h4{
+    color: rgb(255, 255, 255);
+}
+
+.egg_groups{
+    display: flex;
+    flex-direction: column;
 }
 
 .stats_overlay{
@@ -43,12 +66,23 @@
     justify-content: center;
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
+
+    td{
+        vertical-align: middle;
+    }
 }
 
 table{
-    height: 80%;
-    width: 95%;
+    min-height: 80%;
+    width: 100%;
     font-size: 16px;
+    padding: 8px 16px;
+    line-height: 24px;
+    color: rgb(217, 217, 217);
+}
+
+td{
+    vertical-align: text-top;
 }
 
 .stats_bar_td{
