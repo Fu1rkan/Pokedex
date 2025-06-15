@@ -23,6 +23,7 @@
             <img src="./img/filter.png" alt="">
         </nav>
     </header>
+    <section class="main_section">
     <section class="filter_menu">
         <div class="filter_type">
             <p onclick="openTypeBar()">Filter by Type:</p>
@@ -50,8 +51,8 @@
         <p class="filter_type">A-Z</p>
         <p class="filter_type">1-1000</p>
     </section>
-    <section class="main_section">
-        <div class="pokemon_card">
+    <section class="pokemon_cards_overlay">
+        <div class="pokemon_card" onclick="toggleRespPokemonOverlay()">
             <div class="name_and_id">
                 <h3>Glurak</h3>
                 <p>#6</p>
@@ -67,17 +68,18 @@
             </div>
         </div>
     </section>
-    <section class="main_pokemon_overlay_bg">
-        <div class="main_pokemon_overlay">
-            <div class="name_and_id_main_pokemon_overlay">
+    <section class="resp_pokemon_overlay_bg d_none" onclick="" id="resp-pokemon-overlay">
+        <div class="resp_pokemon_overlay">
+            <div class="name_and_id_resp_overlay">
+                <img src="./img/close.png" alt="" onclick="toggleRespPokemonOverlay()" class="close_resp_overlay">
                 <h2>Glurak</h2>
                 <p>#6</p>
             </div>
-            <div class="pokemon_img_container_main_pokemon_overlay">
-                <img src="./img/glurak.png" alt="" class="pokemon_img_main_pokemon_overlay">
+            <div class="pokemon_img_container_resp_overlay">
+                <img src="./img/glurak.png" alt="" class="pokemon_img_resp_overlay">
                 <img src="./img/pokeball.png" alt="" class="pokeball_bg">
             </div>
-            <div class="pokemon_type_main_pokemon_overlay">
+            <div class="pokemon_type_resp_overlay">
                 <img src="./img/fire.png" alt="">
                 <img src="./img/flying.png" alt="">
             </div>
@@ -87,7 +89,7 @@
                 <div class="pokemon_info_type" onclick="setActiveOverlay('info-evo-chain', 'evo-chain-overlay')" id="info-evo-chain">evo chain</div>
             </div>
             <div class="about_overlay" id="about-overlay">
-                <table class="info_table">
+                <table class="table_info">
                     <tr>
                         <td>Species</td>
                         <td class="t_bold">Flame Pokémon</td>
@@ -214,8 +216,180 @@
                 </table>
             </div>
             <div class="evo_chain_overlay d_none" id="evo-chain-overlay">
-
+                <img src="./img/04.png" alt="" class="evo_chain_img">
+                <div class="evo_demand">
+                    <p>lvl 16</p>
+                    <img src="./img/right-arrow.png" alt="">
+                </div>
+                <img src="./img/05.png" alt="" class="evo_chain_img">
+                <div class="evo_demand">
+                    <p>lvl 16</p>
+                    <img src="./img/right-arrow.png" alt="">
+                </div>
+                <img src="./img/glurak.png" alt="" class="evo_chain_img">
             </div>
+        </div>
+    </section>        
+    </section>
+    <section class="pokemon_overlay">
+        <div class="p_sticky">
+            <div class="name_and_id_main_overlay">
+                <h2>Glurak</h2>
+                <p>#6</p>
+            </div>
+            <div class="pokemon_bg">
+                <img src="./img/glurak.png" alt="" class="pokemon_img_main_overlay">
+                <img src="./img/pokeball.png" alt="" class="pokeball_bg_main_overlay">
+            </div>
+            <div class="pokemon_type_main_overlay">
+                <img src="./img/fire.png" alt="">
+                <img src="./img/flying.png" alt="">
+            </div>
+            <div class="pokemon_info_bar_main_overlay">
+                <div class="pokemon_info_type bgc_red pokemon_info_type_border" onclick="setActiveOverlay('info-about-main-overlay', 'about-main-overlay')" id="info-about-main-overlay">about</div>
+                <div class="pokemon_info_type bgc_red" onclick="setActiveOverlay('info-stats-main-overlay', 'stats-main-overlay')" id="info-stats-main-overlay">stats</div>
+                <div class="pokemon_info_type bgc_red" onclick="setActiveOverlay('info-evo-chain-main-overlay', 'evo-chain-main-overlay')" id="info-evo-chain-main-overlay">evo chain</div>
+            </div>
+                <div class="about_main_overlay" id="about-main-overlay">
+                    <table class="table_info_main_overlay">
+                        <tr>
+                            <td>Species</td>
+                            <td class="t_bold">Flame Pokémon</td>
+                        </tr>
+                        <tr>
+                            <td>Shape</td>
+                            <td class="t_bold">Bipedal</td>
+                        </tr>
+                        <tr>
+                            <td>Habitat</td>
+                            <td class="t_bold">Mountain</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td class="t_bold">1,7m</td>
+                        </tr>
+                        <tr>
+                            <td>Wheight</td>
+                            <td class="t_bold">905kg</td>
+                        </tr>
+                        <tr>
+                            <td>Base Experience</td>
+                            <td class="t_bold">240</td>
+                        </tr>
+                        <tr>
+                            <td>Capture Rate</td>
+                            <td class="t_bold">45</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Abilities</h4></td>
+                        </tr>  
+                        <tr>
+                            <td>main</td>
+                            <td class="t_bold">Blaze</td>
+                        </tr>
+                        <tr>
+                            <td>hidden</td>
+                            <td class="t_bold">Solar-Power</td>
+                        </tr>                
+                        <tr>
+                            <td colspan="2"><hr></td>
+                        </tr>
+                        <tr>
+                            <td><h4>Breeding</h4></td>
+                        </tr>
+                        <tr>
+                            <td>Gender Rate</td>
+                            <td class="t_bold">♀️12,5% ♂️87,5%</td>
+                        </tr>
+                        <tr>
+                            <td>Egg Groups</td>
+                            <td class="t_bold">
+                                <div class="egg_groups">
+                                    <p>Monster</p>
+                                    <p>Dragon</p>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Hatch Counter</td>
+                            <td class="t_bold">5100 steps</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="stats_overlay d_none" id="stats-main-overlay">
+                    <table>
+                        <tr>
+                            <td class="stats">hp</td>
+                            <td class="stats_percentage">80</td>
+                            <td class="stats_bar_td">
+                                <div class="stats_bar_container">
+                                    <div class="stats_bar"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="stats">attack</td>
+                            <td class="stats_percentage">80</td>
+                            <td class="stats_bar_td">
+                                <div class="stats_bar_container">
+                                    <div class="stats_bar"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="stats">defense</td>
+                            <td class="stats_percentage">80</td>
+                            <td class="stats_bar_td">
+                                <div class="stats_bar_container">
+                                    <div class="stats_bar"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="stats">special-attack</td>
+                            <td class="stats_percentage">80</td>
+                            <td class="stats_bar_td">
+                                <div class="stats_bar_container">
+                                    <div class="stats_bar"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="stats">special-defense</td>
+                            <td class="stats_percentage">80</td>
+                            <td class="stats_bar_td">
+                                <div class="stats_bar_container">
+                                    <div class="stats_bar"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="stats">speed</td>
+                            <td class="stats_percentage">80</td>
+                            <td class="stats_bar_td">
+                                <div class="stats_bar_container">
+                                    <div class="stats_bar"></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="evo_chain_overlay d_none" id="evo-chain-main-overlay">
+                    <img src="./img/04.png" alt="" class="evo_chain_img">
+                    <div class="evo_demand">
+                        <p>lvl 16</p>
+                        <img src="./img/right-arrow.png" alt="">
+                    </div>
+                    <img src="./img/05.png" alt="" class="evo_chain_img">
+                    <div class="evo_demand">
+                        <p>lvl 16</p>
+                        <img src="./img/right-arrow.png" alt="">
+                    </div>
+                    <img src="./img/glurak.png" alt="" class="evo_chain_img">
+                </div>
         </div>
     </section>
     <script src="./script/pokemon_overlay.js"></script>

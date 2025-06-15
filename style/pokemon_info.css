@@ -72,7 +72,7 @@ h4{
     }
 }
 
-table{
+.table_info{
     min-height: 80%;
     width: 100%;
     font-size: 16px;
@@ -113,4 +113,19 @@ td{
     background-color: rgb(78, 81, 81);
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.evo_chain_img{
+    width: 96px;
+    height: auto;
+}
+
+.evo_demand{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 16px;
 }

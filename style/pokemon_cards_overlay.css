@@ -1,4 +1,4 @@
-.main_section{
+.pokemon_cards_overlay{
     min-height: 100vh;
     width: calc(100% - 160px);
     margin: 26px 80px;
@@ -31,6 +31,9 @@
     justify-content: space-between;
     width: calc(100% - 16px);
     align-items: flex-end;
+    background-color: black;
+    color: white;
+    border-bottom: 4px solid white;
 
     p{
         font-size: 20px;

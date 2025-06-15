@@ -1,0 +1,91 @@
+.main_section{
+    width: 70%;
+}
+
+.pokemon_overlay{
+    width: 30%;
+    background-color: rgb(0, 0, 0);
+    box-shadow: 3px 0 6px 4px black;
+    position: relative;
+    box-sizing: border-box;
+    color: white;
+}
+
+.p_sticky{
+    position: sticky;
+    top: 96px;
+    margin-top: 96px;
+    height: calc(100vh - 96px);
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 16px;
+}
+
+.name_and_id_main_overlay{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+
+    p{
+        font-size: 24px;
+    }
+}
+
+.pokemon_bg{
+    background-image: linear-gradient(90deg, red 10%, #8FA9DE 70%);
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+.pokemon_img_main_overlay{
+    height: 100%;
+    z-index: 2;
+}
+
+.pokeball_bg_main_overlay{
+    position: absolute;
+    height: 80%;
+    right: -80px;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+.pokemon_type_main_overlay{
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+
+    img{
+        border-radius: 16px;
+    }
+}
+
+.pokemon_info_bar_main_overlay{
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    background-color: transparent;
+}
+
+.bgc_red{
+    background-color: rgb(0, 0, 0);
+}
+
+.about_main_overlay{
+    box-sizing: border-box;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    height: 47%;
+}
+
+.table_info_main_overlay{
+    width: 100%;
+    overflow-y: scroll;
+}
