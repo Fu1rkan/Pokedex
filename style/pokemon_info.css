@@ -32,8 +32,6 @@
     background-color: rgb(78, 81, 81);
     border-bottom-left-radius: 16px;
     border-bottom-right-radius: 16px;
-    overflow-y: scroll;
-    scrollbar-color: rgb(255, 0, 0) transparent;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -72,8 +70,13 @@ h4{
     }
 }
 
+.stats_table{
+    width: 90%;
+    height: 80%;
+}
+
 .table_info{
-    min-height: 80%;
+    height: 100%;
     width: 100%;
     font-size: 16px;
     padding: 8px 16px;

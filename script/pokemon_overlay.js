@@ -4,8 +4,8 @@ function toggleRespPokemonOverlay(){
 }
 
 function setActiveOverlay(activeBar, activeOverlay){
-    let barId = ['info-about', 'info-stats', 'info-evo-chain', 'info-about-main-overlay', 'info-stats-main-overlay', 'info-evo-chain-main-overlay'];
-    let overlayId = ['about-overlay', 'stats-overlay', 'evo-chain-overlay', 'about-main-overlay', 'stats-main-overlay', 'evo-chain-main-overlay'];
+    let barId = ['info-about', 'info-stats', 'info-evo-chain'];
+    let overlayId = ['about-overlay', 'stats-overlay', 'evo-chain-overlay'];
 
     barId.forEach(bar => document.getElementById(bar).classList.remove('pokemon_info_type_border'));
     overlayId.forEach(overlay => document.getElementById(overlay).classList.add('d_none'));
