@@ -22,6 +22,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     color: white;
     overflow: hidden;
+    margin: 0 24px;
 }
 
 .name_and_id_resp_overlay{
@@ -80,12 +81,14 @@ h2{
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
     background-color: transparent;
+    overflow: hidden;
+    gap: 8px;
 
     img{
         border-radius: 16px;
-        width: 100%;
+        width: calc(50% - 4px);
+        height: 70%;
     }
 }
 
@@ -95,4 +98,23 @@ h2{
     top: 8px;
     height: 16px;
     filter: invert(1);
+}
+
+@media (max-width: 500px){
+    .resp_pokemon_overlay{
+        width: 300px;
+        height: 450px;
+    }
+
+    .name_and_id_resp_overlay p{
+        font-size: 20px;
+    }
+
+    .close_resp_overlay{
+        height: 12px;
+    }
+    
+    h2{
+        font-size: 24px;
+    }
 }

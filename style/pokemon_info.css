@@ -38,23 +38,6 @@
     box-sizing: border-box;
 }
 
-hr{
-    width: 100%;
-    margin: 16px 0;
-    height: 2px;
-    border: none;
-    background-color: rgb(123, 123, 123);
-}
-
-h4{
-    color: rgb(255, 255, 255);
-}
-
-.egg_groups{
-    display: flex;
-    flex-direction: column;
-}
-
 .stats_overlay{
     height: 42%;
     width: 95%;
@@ -70,11 +53,6 @@ h4{
     }
 }
 
-.stats_table{
-    width: 90%;
-    height: 80%;
-}
-
 .table_info{
     height: 100%;
     width: 100%;
@@ -82,10 +60,19 @@ h4{
     padding: 8px 16px;
     line-height: 24px;
     color: rgb(217, 217, 217);
+
+    td{
+        width: 50%;
+    }
 }
 
 td{
     vertical-align: text-top;
+}
+
+.stats_table{
+    width: 90%;
+    height: 80%;
 }
 
 .stats_bar_td{
@@ -122,7 +109,7 @@ td{
 }
 
 .evo_chain_img{
-    width: 96px;
+    width: 25%;
     height: auto;
 }
 
@@ -131,4 +118,26 @@ td{
     flex-direction: column;
     gap: 8px;
     font-size: 16px;
+    width: 10%;
+}
+
+@media (max-width: 500px){
+    .pokemon_info_type{
+        font-size: 14px;
+    }
+
+    .table_info{
+        font-size: 12px;
+        line-height: 18px;
+        height: 80%;
+    }
+
+    .stats_table{
+        font-size: 14px;
+        line-height: 26px;
+    }
+
+    .evo_demand{
+        font-size: 10px;
+    }
 }

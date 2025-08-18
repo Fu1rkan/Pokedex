@@ -1,5 +1,5 @@
 .pokemon_cards_overlay{
-    min-height: calc(100vh - 306px);
+    min-height: calc(100vh - 272px);
     width: calc(100% - 160px);
     margin: 26px 80px;
     display: flex;
@@ -19,6 +19,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 .pokemon_card:hover{
@@ -68,4 +69,58 @@
 .pokemon_img{
     width: 196px;
     height: auto;
+}
+
+@media (max-width: 820px){
+    .pokemon_cards_overlay{
+        margin: 26px 8px;
+        width: calc(100% - 16px);
+    }
+}
+
+@media (max-width: 450px){
+
+    .pokemon_cards_overlay{
+        gap: 8px;
+    }
+
+    .pokemon_card{
+        width: 140px;
+        height: 210px;
+        border: 2px solid black;
+    }
+
+    .name_and_id{
+        padding: 6px 8px;
+        width: calc(100% - 16px);
+        border-bottom: 2px solid white;
+    
+        p{
+            font-size: 14px;
+        }
+
+        h3{
+            font-size: 14px;
+        }
+    }
+
+    .pokemon_type{
+        gap: 16px;
+        border-top: 2px solid rgb(255, 255, 255);
+    
+        img{
+            width: 110px;
+            height: auto;
+        }
+    }
+
+    .pokemon_type_container{
+        width: 24px;
+        height: 24px;
+    }
+    
+    .pokemon_img{
+        width: 140px;
+    }
+
 }
