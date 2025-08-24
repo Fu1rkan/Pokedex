@@ -17,6 +17,12 @@ nav{
 
 h1{
     font-size: 40px;
+    cursor: pointer;
+}
+
+h1 a{
+    text-decoration: none;
+    color: black;
 }
 
 label{

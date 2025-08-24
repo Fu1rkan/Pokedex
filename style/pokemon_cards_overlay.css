@@ -78,6 +78,18 @@
     }
 }
 
+@media (max-width: 600px){
+    .pokemon_cards_overlay{
+        min-height: calc(100vh - 256px);
+    }
+}
+
+@media (max-width: 500px){
+    .pokemon_cards_overlay{
+        min-height: calc(100vh - 221px);
+    }
+}
+
 @media (max-width: 450px){
 
     .pokemon_cards_overlay{
