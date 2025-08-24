@@ -1,11 +1,12 @@
-function toggleRespPokemonOverlay(){
-    let overlay = document.getElementById('resp-pokemon-overlay');
+function toggleRespPokemonOverlay(pokemonData){
+    let overlay = document.getElementById('main-pokemon-overlay');
     overlay.classList.toggle('d_none');
+    document.getElementById(`pokemon${pokemonData}`).classList.toggle('d_none')
 }
 
-function setActiveOverlay(activeBar, activeOverlay){
-    let barId = ['info-about', 'info-stats', 'info-evo-chain'];
-    let overlayId = ['about-overlay', 'stats-overlay', 'evo-chain-overlay'];
+function setActiveOverlay(activeBar, activeOverlay, pokemonId){
+    let barId = [`info-about${pokemonId}`, `info-stats${pokemonId}`, `info-evo-chain${pokemonId}`];
+    let overlayId = [`about-overlay${pokemonId}`, `stats-overlay${pokemonId}`, `evo-chain-overlay${pokemonId}`];
 
     barId.forEach(bar => document.getElementById(bar).classList.remove('pokemon_info_type_border'));
     overlayId.forEach(overlay => document.getElementById(overlay).classList.add('d_none'));

@@ -1,6 +1,6 @@
-function pokemonOverlay(pokemonData){
+function pokemonOverlay(pokemonData, typeImg){
     return `
-        <div class="pokemon_card" onclick="toggleRespPokemonOverlay(${pokemonData})">
+        <div class="pokemon_card" onclick="toggleRespPokemonOverlay(${pokemonData.id})">
             <div class="name_and_id">
                 <h3 id="pokemon-name">${pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</h3>
                 <p>#${pokemonData.id}</p>
@@ -10,148 +10,252 @@ function pokemonOverlay(pokemonData){
             </div>
             <div class="pokemon_type">
                 <div class="pokemon_type_container">
-                    <img src="" alt="">
+                    <img src="${typeImg}" alt="">
                 </div>
             </div>
         </div>
     `
 }
 
-function pokemonOverlay2Types(pokemonId, data, dataType, dataType2){
+function pokemonOverlay2Types(pokemonData, typeImg, type2Img){
     return `
-        <div class="pokemon_card" onclick="toggleRespPokemonOverlay(${pokemonId})">
+        <div class="pokemon_card" onclick="toggleRespPokemonOverlay(${pokemonData.id})">
             <div class="name_and_id">
-                <h3 id="pokemon-name">${data.name}</h3>
-                <p>#${data.id}</p>
+                <h3 id="pokemon-name">${pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</h3>
+                <p>#${pokemonData.id}</p>
             </div>
-            <div class="ppp">
-                <img src="${data.sprites.other['official-artwork'].front_default}" alt="" class="pokemon_img">
+            <div>
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" alt="" class="pokemon_img">
             </div>
             <div class="pokemon_type">
                 <div class="pokemon_type_container">
-                    <img src="${dataType.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
+                    <img src="${typeImg}" alt="">
                 </div>
                 <div class="pokemon_type_container">
-                    <img src="${dataType2.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
+                    <img src="${type2Img}" alt="">
                 </div>
             </div>
         </div>
     `
 }
 
-function pokemonMainOverlay(){
+
+function pokemonMainOverlay(pokemonData, species, typeImg){
     return `
-        <div class="resp_pokemon_overlay">
+        <div class="resp_pokemon_overlay d_none" id="pokemon${pokemonData.id}">
             <div class="name_and_id_resp_overlay">
-                <img src="./img/close.png" alt="" onclick="toggleRespPokemonOverlay()" class="close_resp_overlay">
-                <h2>Glurak</h2>
-                <p>#6</p>
+                <img src="./img/close.png" alt="" onclick="toggleRespPokemonOverlay(${pokemonData.id})" class="close_resp_overlay">
+                <h2>${pokemonData.name}</h2>
+                <p>#${pokemonData.id}</p>
             </div>
             <div class="pokemon_img_container_resp_overlay">
-                <img src="./img/glurak.png" alt="" class="pokemon_img_resp_overlay">
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_resp_overlay">
                 <img src="./img/pokeball.png" alt="" class="pokeball_bg">
             </div>
             <div class="pokemon_type_resp_overlay">
-                <img src="./img/fire.png" alt="">
-                <img src="./img/flying.png" alt="">
+                <img src="${typeImg}" alt="">
             </div>
             <div class="pokemon_info_bar">
-                <div class="pokemon_info_type pokemon_info_type_border" onclick="setActiveOverlay('info-about', 'about-overlay')" id="info-about">about</div>
-                <div class="pokemon_info_type" onclick="setActiveOverlay('info-stats', 'stats-overlay')" id="info-stats">stats</div>
-                <div class="pokemon_info_type" onclick="setActiveOverlay('info-evo-chain', 'evo-chain-overlay')" id="info-evo-chain">evo chain</div>
+                <div class="pokemon_info_type pokemon_info_type_border" onclick="setActiveOverlay('info-about${pokemonData.id}', 'about-overlay${pokemonData.id}', ${pokemonData.id})" id="info-about${pokemonData.id}">about</div>
+                <div class="pokemon_info_type" onclick="setActiveOverlay('info-stats${pokemonData.id}', 'stats-overlay${pokemonData.id}', ${pokemonData.id})" id="info-stats${pokemonData.id}">stats</div>
+                <div class="pokemon_info_type" onclick="setActiveOverlay('info-evo-chain${pokemonData.id}', 'evo-chain-overlay${pokemonData.id}', ${pokemonData.id})" id="info-evo-chain${pokemonData.id}">evo chain</div>
             </div>
-            <div class="about_overlay" id="about-overlay">
+            <div class="about_overlay" id="about-overlay${pokemonData.id}">
                 <table class="table_info">
                     <tr>
                         <td>Species</td>
-                        <td class="t_bold">Flame Pokémon</td>
-                    </tr>
-                    <tr>
-                        <td>Shape</td>
-                        <td class="t_bold">Bipedal</td>
-                    </tr>
-                    <tr>
-                        <td>Habitat</td>
-                        <td class="t_bold">Mountain</td>
+                        <td class="t_bold">${species.genera[7].genus}</td>
                     </tr>
                     <tr>
                         <td>Height</td>
-                        <td class="t_bold">1,7m</td>
+                        <td class="t_bold">${pokemonData.height}m</td>
                     </tr>
                     <tr>
                         <td>Wheight</td>
-                        <td class="t_bold">905kg</td>
+                        <td class="t_bold">${pokemonData.weight}kg</td>
                     </tr>
                     <tr>
                         <td>Base Experience</td>
-                        <td class="t_bold">240</td>
-                    </tr>
-                    <tr>
-                        <td>Capture Rate</td>
-                        <td class="t_bold">45</td>
+                        <td class="t_bold">${pokemonData.base_experience}</td>
                     </tr>
                 </table>
             </div>
-            <div class="stats_overlay d_none" id="stats-overlay">
+            <div class="stats_overlay d_none" id="stats-overlay${pokemonData.id}">
                 <table class="stats_table">
                     <tr>
                         <td class="stats">hp</td>
-                        <td class="stats_percentage">80</td>
+                        <td class="stats_percentage">${pokemonData.stats[0].base_stat}</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
-                                <div class="stats_bar"></div>
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[0].base_stat}/255)"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="stats">attack</td>
-                        <td class="stats_percentage">80</td>
+                        <td class="stats_percentage">${pokemonData.stats[1].base_stat}</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
-                                <div class="stats_bar"></div>
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[1].base_stat}/190)"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="stats">defense</td>
-                        <td class="stats_percentage">80</td>
+                        <td class="stats_percentage">${pokemonData.stats[2].base_stat}</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
-                                <div class="stats_bar"></div>
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[2].base_stat}/250)"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="stats">special-attack</td>
-                        <td class="stats_percentage">80</td>
+                        <td class="stats_percentage">${pokemonData.stats[3].base_stat}</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
-                                <div class="stats_bar"></div>
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[3].base_stat}/194)"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="stats">special-defense</td>
-                        <td class="stats_percentage">80</td>
+                        <td class="stats_percentage">${pokemonData.stats[4].base_stat}</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
-                                <div class="stats_bar"></div>
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[4].base_stat}/250)"></div>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td class="stats">speed</td>
-                        <td class="stats_percentage">80</td>
+                        <td class="stats_percentage">${pokemonData.stats[5].base_stat}</td>
                         <td class="stats_bar_td">
                             <div class="stats_bar_container">
-                                <div class="stats_bar"></div>
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[5].base_stat}/200)"></div>
                             </div>
                         </td>
                     </tr>
                 </table>
             </div>
-            <div class="evo_chain_overlay d_none" id="evo-chain-overlay">
-                <img src="./img/04.png" alt="" class="evo_chain_img">
+            <div class="evo_chain_overlay d_none" id="evo-chain-overlay${pokemonData.id}">
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}">
+                <div class="evo_demand">
+                    <p>lvl 16</p>
+                    <img src="./img/right-arrow.png" alt="">
+                </div>
+                <img src="./img/05.png" alt="" class="evo_chain_img">
+                <div class="evo_demand">
+                    <p>lvl 16</p>
+                    <img src="./img/right-arrow.png" alt="">
+                </div>
+                <img src="./img/glurak.png" alt="" class="evo_chain_img">
+            </div>
+        </div>
+    `
+}
+
+function pokemonMainOverlay2Types(pokemonData, species, typeImg, type2Img){
+    return `
+        <div class="resp_pokemon_overlay d_none" id="pokemon${pokemonData.id}">
+            <div class="name_and_id_resp_overlay">
+                <img src="./img/close.png" alt="" onclick="toggleRespPokemonOverlay(${pokemonData.id})" class="close_resp_overlay">
+                <h2>${pokemonData.name}</h2>
+                <p>#${pokemonData.id}</p>
+            </div>
+            <div class="pokemon_img_container_resp_overlay">
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_resp_overlay">
+                <img src="./img/pokeball.png" alt="" class="pokeball_bg">
+            </div>
+            <div class="pokemon_type_resp_overlay">
+                <img src="${typeImg}" alt="">
+                <img src="${type2Img}" alt="">
+            </div>
+            <div class="pokemon_info_bar">
+                <div class="pokemon_info_type pokemon_info_type_border" onclick="setActiveOverlay('info-about${pokemonData.id}', 'about-overlay${pokemonData.id}' ,${pokemonData.id})" id="info-about${pokemonData.id}">about</div>
+                <div class="pokemon_info_type" onclick="setActiveOverlay('info-stats${pokemonData.id}', 'stats-overlay${pokemonData.id}' ,${pokemonData.id})" id="info-stats${pokemonData.id}">stats</div>
+                <div class="pokemon_info_type" onclick="setActiveOverlay('info-evo-chain${pokemonData.id}', 'evo-chain-overlay${pokemonData.id}' ,${pokemonData.id})" id="info-evo-chain${pokemonData.id}">evo chain</div>
+            </div>
+            <div class="about_overlay" id="about-overlay${pokemonData.id}">
+                <table class="table_info">
+                    <tr>
+                        <td>Species</td>
+                        <td class="t_bold">${species.genera[7].genus}</td>
+                    </tr>
+                    <tr>
+                        <td>Height</td>
+                        <td class="t_bold">${pokemonData.height}m</td>
+                    </tr>
+                    <tr>
+                        <td>Wheight</td>
+                        <td class="t_bold">${pokemonData.weight}kg</td>
+                    </tr>
+                    <tr>
+                        <td>Base Experience</td>
+                        <td class="t_bold">${pokemonData.base_experience}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="stats_overlay d_none" id="stats-overlay${pokemonData.id}">
+                <table class="stats_table">
+                    <tr>
+                        <td class="stats">hp</td>
+                        <td class="stats_percentage">${pokemonData.stats[0].base_stat}</td>
+                        <td class="stats_bar_td">
+                            <div class="stats_bar_container">
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[0].base_stat}/255)"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="stats">attack</td>
+                        <td class="stats_percentage">${pokemonData.stats[1].base_stat}</td>
+                        <td class="stats_bar_td">
+                            <div class="stats_bar_container">
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[1].base_stat}/190)"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="stats">defense</td>
+                        <td class="stats_percentage">${pokemonData.stats[2].base_stat}</td>
+                        <td class="stats_bar_td">
+                            <div class="stats_bar_container">
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[2].base_stat}/250)"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="stats">special-attack</td>
+                        <td class="stats_percentage">${pokemonData.stats[3].base_stat}</td>
+                        <td class="stats_bar_td">
+                            <div class="stats_bar_container">
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[3].base_stat}/194)"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="stats">special-defense</td>
+                        <td class="stats_percentage">${pokemonData.stats[4].base_stat}</td>
+                        <td class="stats_bar_td">
+                            <div class="stats_bar_container">
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[4].base_stat}/250)"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="stats">speed</td>
+                        <td class="stats_percentage">${pokemonData.stats[5].base_stat}</td>
+                        <td class="stats_bar_td">
+                            <div class="stats_bar_container">
+                                <div class="stats_bar" style="width: calc(100%*${pokemonData.stats[5].base_stat}/200)"></div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="evo_chain_overlay d_none" id="evo-chain-overlay${pokemonData.id}">
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}">
                 <div class="evo_demand">
                     <p>lvl 16</p>
                     <img src="./img/right-arrow.png" alt="">
