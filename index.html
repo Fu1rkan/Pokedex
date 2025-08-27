@@ -15,9 +15,9 @@
     <header>
         <nav>
             <h1><a href="#">Pokedex</a></h1>
-            <label for="">
-                <input type="text" placeholder="name">
-                <button>
+            <label for="search-name">
+                <input type="text" placeholder="name" id="search-name">
+                <button class="search_button">
                     <img src="./img/search.png" alt="" class="search_logo">
                 </button>
             </label>
@@ -28,6 +28,11 @@
     <main>
  
         <section class="pokemon_cards_overlay" id="pokemon-cards-overlay">
+        </section>
+
+        <section class="load_more_pokemons" id="load-more-pokemons">
+            <button class="load_more_button" onclick="loadMorePokemons()">load more</button>
+
         </section>
 
         <section class="resp_pokemon_overlay_bg d_none" id="main-pokemon-overlay">

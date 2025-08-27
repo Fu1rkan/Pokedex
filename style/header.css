@@ -35,7 +35,7 @@ label{
     transform: translate(-50%);
 }
 
-button{
+.search_button{
     width: 32px;
     height: 100%;
     border-top-right-radius: 16px;

@@ -55,7 +55,6 @@ h2{
     position: relative;
     z-index: 1;
     overflow: hidden;
-    background-image: linear-gradient(90deg, red 10%, #8FA9DE 70%);
 }
 
 .pokeball_bg{

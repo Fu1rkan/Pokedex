@@ -90,3 +90,21 @@ main{
     height:fit-content;
     border-spacing: 24px;
 }
+
+.load_more_pokemons{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 16px 0;
+    margin-top: 16px;
+}
+
+.load_more_button{
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 16px;
+    border: 4px solid black;
+    background-color: red;
+    cursor: pointer;
+}
