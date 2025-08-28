@@ -1,3 +1,5 @@
+let pokemonCounter = 20;
+
 let colorByType = {
     "normal":   "#A8A77A",
     "fire":     "#EE8130",
@@ -24,7 +26,6 @@ async function loadPokemon() {
         let response = await fetch(`https://pokeapi.co/api/v2/pokemon`);
         let data = await response.json();
         let pokemon = data.results;
-        
         generatePokemons(pokemon);
 
     }catch (error){
@@ -47,6 +48,10 @@ async function setToHtml(pokemonData){
     let speciesData = await fetch(pokemonData.species.url);
     let species = await speciesData.json();
 
+    checkType(pokemonData, typeImg, species);
+}
+
+async function checkType(pokemonData, typeImg, species) {
     if (pokemonData.types.length > 1) {
         let type2Data = await fetch(pokemonData.types[1].type.url);
         let type2 = await type2Data.json();
@@ -59,9 +64,10 @@ async function setToHtml(pokemonData){
     }
 }
 
-async function loadMorePokemon() {
+async function loadMorePokemons() {
     try{
-        let response = await fetch(`https://pokeapi.co/api/v2/pokemon`);
+        pokemonCounter += 20;
+        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${pokemonCounter}&limit=20`);
         let data = await response.json();
         let pokemon = data.results;
         
