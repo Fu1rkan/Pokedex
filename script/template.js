@@ -39,7 +39,6 @@ function pokemonOverlay2Types(pokemonData, typeImg, type2Img){
     `
 }
 
-
 function pokemonMainOverlay(pokemonData, species, typeImg){
     return `
         <div class="resp_pokemon_overlay d_none" id="pokemon${pokemonData.id}">
@@ -139,17 +138,6 @@ function pokemonMainOverlay(pokemonData, species, typeImg){
                 </table>
             </div>
             <div class="evo_chain_overlay d_none" id="evo-chain-overlay${pokemonData.id}">
-                <img src="${pokemonData.sprites.other['official-artwork'].front_default}">
-                <div class="evo_demand">
-                    <p>lvl 16</p>
-                    <img src="./img/right-arrow.png" alt="">
-                </div>
-                <img src="./img/05.png" alt="" class="evo_chain_img">
-                <div class="evo_demand">
-                    <p>lvl 16</p>
-                    <img src="./img/right-arrow.png" alt="">
-                </div>
-                <img src="./img/glurak.png" alt="" class="evo_chain_img">
             </div>
         </div>
     `
@@ -255,19 +243,41 @@ function pokemonMainOverlay2Types(pokemonData, species, typeImg, type2Img){
                 </table>
             </div>
             <div class="evo_chain_overlay d_none" id="evo-chain-overlay${pokemonData.id}">
-                <img src="${pokemonData.sprites.other['official-artwork'].front_default}">
-                <div class="evo_demand">
-                    <p>lvl 16</p>
-                    <img src="./img/right-arrow.png" alt="">
-                </div>
-                <img src="./img/05.png" alt="" class="evo_chain_img">
-                <div class="evo_demand">
-                    <p>lvl 16</p>
-                    <img src="./img/right-arrow.png" alt="">
-                </div>
-                <img src="./img/glurak.png" alt="" class="evo_chain_img">
             </div>
         </div>
+    `
+}
+
+function noEvoChainOverlay(){
+    return `
+        <h4>has no Evo Chain</h4>
+    `
+}
+
+function oneEvoChainOverlay(evoChain, pokemonData1, pokemonData2){
+    return `
+        <img src="${pokemonData1.sprites.other['official-artwork'].front_default}" class="evo_chain_img">
+        <div class="evo_demand">
+            <p>lvl ${evoChain[0].evolution_details[0].min_level}</p>
+            <img src="./img/right-arrow.png" alt="">
+        </div>
+        <img src="${pokemonData2.sprites.other['official-artwork'].front_default}" alt="" class="evo_chain_img">
+    `
+}
+
+function twoEvoChainOverlay(evoChain, pokemonData1, pokemonData2, pokemonData3){
+    return `
+        <img src="${pokemonData1.sprites.other['official-artwork'].front_default}" class="evo_chain_img">
+        <div class="evo_demand">
+            <p>lvl ${evoChain[0].evolution_details[0].min_level}</p>
+            <img src="./img/right-arrow.png" alt="">
+        </div>
+        <img src="${pokemonData2.sprites.other['official-artwork'].front_default}" alt="" class="evo_chain_img">
+        <div class="evo_demand">
+            <p>lvl ${evoChain[0].evolves_to[0].evolution_details[0].min_level}</p>
+            <img src="./img/right-arrow.png" alt="">
+        </div>
+        <img src="${pokemonData3.sprites.other['official-artwork'].front_default}" alt="" class="evo_chain_img">
     `
 }
 

@@ -107,4 +107,13 @@ main{
     border: 4px solid black;
     background-color: red;
     cursor: pointer;
+    transition: ease-in-out 100ms;
+}
+
+.load_more_button:hover{
+    transform: scale(1.05);
+}
+
+.load_more_button:active{
+    transform: scale(1);
 }
