@@ -1,7 +1,8 @@
 function toggleRespPokemonOverlay(pokemonData){
-    let overlay = document.getElementById('main-pokemon-overlay');
-    overlay.classList.toggle('d_none');
+    document.getElementById('main-pokemon-overlay').classList.toggle('d_none');
     document.getElementById(`pokemon${pokemonData}`).classList.toggle('d_none');
+    document.getElementById(`switch-arrow-right${pokemonData}`).classList.toggle('d_none');
+    document.getElementById(`switch-arrow${pokemonData}`).classList.toggle('d_none');
 }
 
 function setActiveOverlay(activeBar, activeOverlay, pokemonId){

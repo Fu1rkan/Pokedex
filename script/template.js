@@ -41,6 +41,7 @@ function pokemonOverlay2Types(pokemonData, typeImg, type2Img){
 
 function pokemonMainOverlay(pokemonData, species, typeImg){
     return `
+        <img src="./img/left-arrow.png" alt="" class="d_none switch_arrows" id="switch-arrow${pokemonData.id}" onclick="switchBackward(${pokemonData.id})">
         <div class="resp_pokemon_overlay d_none" id="pokemon${pokemonData.id}">
             <div class="name_and_id_resp_overlay">
                 <img src="./img/close.png" alt="" onclick="toggleRespPokemonOverlay(${pokemonData.id})" class="close_resp_overlay">
@@ -48,7 +49,7 @@ function pokemonMainOverlay(pokemonData, species, typeImg){
                 <p>#${pokemonData.id}</p>
             </div>
             <div class="pokemon_img_container_resp_overlay" style="background-color: ${colorByType[pokemonData.types[0].type.name]}">
-                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_resp_overlay">
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_resp_overlay" onclick="playAudio(${pokemonData.id})">
                 <img src="./img/pokeball.png" alt="" class="pokeball_bg">
             </div>
             <div class="pokemon_type_resp_overlay">
@@ -140,11 +141,13 @@ function pokemonMainOverlay(pokemonData, species, typeImg){
             <div class="evo_chain_overlay d_none" id="evo-chain-overlay${pokemonData.id}">
             </div>
         </div>
+        <img src="./img/right-arrow.png" alt="" class="d_none switch_arrows" id="switch-arrow-right${pokemonData.id}" onclick="switchForward(${pokemonData.id})">
     `
 }
 
 function pokemonMainOverlay2Types(pokemonData, species, typeImg, type2Img){
     return `
+        <img src="./img/left-arrow.png" alt="" class="d_none switch_arrows" id="switch-arrow${pokemonData.id}" onclick="switchBackward(${pokemonData.id})">
         <div class="resp_pokemon_overlay d_none" id="pokemon${pokemonData.id}">
             <div class="name_and_id_resp_overlay">
                 <img src="./img/close.png" alt="" onclick="toggleRespPokemonOverlay(${pokemonData.id})" class="close_resp_overlay">
@@ -152,7 +155,7 @@ function pokemonMainOverlay2Types(pokemonData, species, typeImg, type2Img){
                 <p>#${pokemonData.id}</p>
             </div>
             <div class="pokemon_img_container_resp_overlay" style="background-image: linear-gradient(90deg, ${colorByType[pokemonData.types[0].type.name]} 10%, ${colorByType[pokemonData.types[1].type.name]} 70%);">
-                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_resp_overlay">
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_resp_overlay" onclick="playAudio(${pokemonData.id})">
                 <img src="./img/pokeball.png" alt="" class="pokeball_bg">
             </div>
             <div class="pokemon_type_resp_overlay">
@@ -245,6 +248,7 @@ function pokemonMainOverlay2Types(pokemonData, species, typeImg, type2Img){
             <div class="evo_chain_overlay d_none" id="evo-chain-overlay${pokemonData.id}">
             </div>
         </div>
+        <img src="./img/right-arrow.png" alt="" class="d_none switch_arrows" id="switch-arrow-right${pokemonData.id}" onclick="switchForward(${pokemonData.id})">
     `
 }
 

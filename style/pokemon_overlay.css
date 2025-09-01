@@ -10,6 +10,21 @@
     align-items: center;
 }
 
+.switch_arrows{
+    width: 64px;
+    height: auto;
+    filter: invert(1);
+    transition: 200ms;
+}
+
+.switch_arrows:hover{
+    transform: scale(1.1);
+}
+
+.switch_arrows:active{
+    transform: scale(1);
+}
+
 .resp_pokemon_overlay{
     width: 400px;
     height: 600px;
@@ -71,6 +86,15 @@ h2{
     height: 100%;
     width: auto;
     z-index: 1;
+    transition: 200ms;
+}
+
+.pokemon_img_resp_overlay:hover{
+    transform: scale(1.05);
+}
+
+.pokemon_img_resp_overlay:active{
+    transform: scale(1);
 }
 
 .pokemon_type_resp_overlay{

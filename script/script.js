@@ -121,3 +121,30 @@ async function loadMorePokemons() {
         console.error("Fehler beim Abrufen:", error);
     }
 }
+
+function switchBackward(pokemonData){
+    if (pokemonData > 1) {
+        toggleRespPokemonOverlay(pokemonData);
+        pokemonData -= 1;
+        toggleRespPokemonOverlay(pokemonData);
+    }
+}
+
+function switchForward(pokemonData){
+    let pokemonContainer = document.getElementById('pokemon-cards-overlay');
+    let pokemons = pokemonContainer.querySelectorAll(":scope > div");
+
+    if (pokemonData < pokemons.length) {
+        toggleRespPokemonOverlay(pokemonData);
+        pokemonData += 1;
+        toggleRespPokemonOverlay(pokemonData);
+    }else{
+        loadMorePokemons();
+    }
+}
+
+async function playAudio(pokemon){
+    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
+    let data = await response.json();
+    new Audio(data.cries.latest).play();
+}
