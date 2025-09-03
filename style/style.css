@@ -10,6 +10,7 @@
     padding: 0;
     scroll-behavior: smooth;
     font-family: 'Open Sans', sans-serif;
+    touch-action: manipulation;
 }
 
 .font{
@@ -26,4 +27,8 @@
 
 .t_bold{
     font-weight: 700;
+}
+
+.o_h{
+    overflow: hidden;
 }

@@ -1,8 +1,18 @@
 function toggleRespPokemonOverlay(pokemonData){
+    let action =  document.getElementById('bleur-overlay');
+    let lego = action.querySelectorAll(":scope > div");
     document.getElementById('main-pokemon-overlay').classList.toggle('d_none');
     document.getElementById(`pokemon${pokemonData}`).classList.toggle('d_none');
     document.getElementById(`switch-arrow-right${pokemonData}`).classList.toggle('d_none');
     document.getElementById(`switch-arrow${pokemonData}`).classList.toggle('d_none');
+    document.getElementById(`switch-arrow-right-resp${pokemonData}`).classList.toggle('d_none');
+    document.getElementById(`switch-arrow-resp${pokemonData}`).classList.toggle('d_none');
+    document.getElementById('my-body').classList.toggle('o_h');
+    if (1 <= lego.length) {
+        action.innerHTML = "";
+    }else{
+        action.innerHTML += bleurBg(pokemonData);
+    }
 }
 
 function setActiveOverlay(activeBar, activeOverlay, pokemonId){

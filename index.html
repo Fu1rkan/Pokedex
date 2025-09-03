@@ -10,8 +10,9 @@
     <script src="./script/template.js"></script>
 
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="icon" type="image/png" href="./img/pokeball.png">
 </head>
-<body onload="loadPokemon()">
+<body onload="loadPokemon()" id="my-body">
     <header>
         <nav>
             <h1><a href="#">Pokedex</a></h1>
@@ -32,11 +33,13 @@
 
         <section class="load_more_pokemons" id="load-more-pokemons">
             <button class="load_more_button" onclick="loadMorePokemons()">load more</button>
-
         </section>
 
         <section class="resp_pokemon_overlay_bg d_none" id="main-pokemon-overlay">
-        </section>        
+
+            <div id="bleur-overlay">
+            </div>
+        </section>
         
     </main>
 
