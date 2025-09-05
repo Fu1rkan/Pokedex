@@ -1,118 +1,155 @@
 let pokemonCounter = 0;
 
-let nameCounter = 1;
-
-let names = ['Furkan'];
+let names = [];
 
 let colorByType = {
-    "normal":   "#A8A77A",
-    "fire":     "#EE8130",
+    "normal":   "#919aa2",
+    "fire":     "#fe9d55",
     "water":    "#6390F0",
     "electric": "#F7D02C",
-    "grass":    "#62bc5a",
+    "grass":    "#63BB59",
     "ice":      "#96D9D6",
     "fighting": "#C22E28",
     "poison":   "#A33EA1",
-    "ground":   "#E2BF65",
-    "flying":   "#A98FF3",
+    "ground":   "#d97845",
+    "flying":   "#8fa9de",
     "psychic":  "#F95587",
-    "bug":      "#A6B91A",
+    "bug":      "#91c12e",
     "rock":     "#B6A136",
     "ghost":    "#735797",
     "dragon":   "#6F35FC",
     "dark":     "#705746",
-    "steel":    "#B7B7CE",
+    "steel":    "#5a8ea2",
     "fairy":    "#D685AD"
 }
 
 async function loadPokemon() {
     try{
-        let response = await fetch(`https://pokeapi.co/api/v2/pokemon`);
-        let data = await response.json();
-        let pokemon = data.results;
-        generatePokemons(pokemon);
+        let pokemonsLink = await fetch(`https://pokeapi.co/api/v2/pokemon`);
+        let pokemons = await pokemonsLink.json();
+        pokemons = pokemons.results;
+        generatePokemons(pokemons);
         pokemonCounter += 20;
-
     }catch (error){
         console.error("Fehler beim Abrufen:", error);
     }
 }
 
-async function generatePokemons(pokemonList){
-    for (let i = 0; i < pokemonList.length; i++) {
-        let pokemonStats = await fetch(pokemonList[i].url);
-        let pokemonData = await pokemonStats.json();
-        await setToHtml(pokemonData);
-        names.push(pokemonData.name);
-    }
-    nameCounter += 20;    
+async function generatePokemons(pokemons){
+    for (let i = 0; i < pokemons.length; i++) {
+        try {
+            let pokemonLink = await fetch(pokemons[i].url);
+            let pokemonData = await pokemonLink.json();
+            await setToHtml(pokemonData);
+            names.push(pokemonData.name);
+        } catch (error) {
+            console.error("Fehler beim Abrufen:", error);
+        }
+    } 
 }
 
 async function setToHtml(pokemonData){
-    let typeData = await fetch(pokemonData.types[0].type.url);
-    let type = await typeData.json();
-    let typeImg = type.sprites['generation-viii']['sword-shield'].name_icon
-    let speciesData = await fetch(pokemonData.species.url);
-    let species = await speciesData.json();
-
-    checkType(pokemonData, typeImg, species);
-    checkEvoChain(pokemonData, species);
+    try {
+        let type1Link = await fetch(pokemonData.types[0].type.url);
+        let type1Data = await type1Link.json();
+        let speciesLink = await fetch(pokemonData.species.url);
+        let speciesData = await speciesLink.json();
+        checkType(pokemonData, type1Data, speciesData);
+        checkEvoChain(pokemonData, speciesData);
+    } catch (error) {
+        console.error("Fehler beim Überschreiben in HTML:", error);
+    }
 }
 
-async function checkType(pokemonData, typeImg, species) {
+async function checkType(pokemonData, type1Data, speciesData) {
     if (pokemonData.types.length > 1) {
-        let type2Data = await fetch(pokemonData.types[1].type.url);
-        let type2 = await type2Data.json();
-        let type2Img = type2.sprites['generation-viii']['sword-shield'].name_icon
-        document.getElementById('pokemon-cards-overlay').innerHTML += pokemonOverlayTypes(pokemonData, typeImg, type2Img);
-        document.getElementById('main-pokemon-overlay').innerHTML += pokemonMainOverlay(pokemonData, species, typeImg, type2Img)
+        getSecondTypeImg(pokemonData, type1Data, speciesData);
     }else{
-        document.getElementById('pokemon-cards-overlay').innerHTML += pokemonOverlayTypes(pokemonData, typeImg);
-        document.getElementById('main-pokemon-overlay').innerHTML += pokemonMainOverlay(pokemonData, species, typeImg)
+        let type2Data = type1Data;
+        document.getElementById('pokemon-cards-overlay').innerHTML += pokemonCardOverlay(pokemonData, type1Data, type2Data);
+        document.getElementById('main-pokemon-overlay').innerHTML += pokemonMainOverlay(pokemonData, speciesData, type1Data, type2Data);
+    }
+}
+
+async function getSecondTypeImg(pokemonData, type1Data, speciesData){
+    try {
+        let type2Link = await fetch(pokemonData.types[1].type.url);
+        let type2Data = await type2Link.json();
+        document.getElementById('pokemon-cards-overlay').innerHTML += pokemonCardOverlay(pokemonData, type1Data, type2Data);
+        document.getElementById('main-pokemon-overlay').innerHTML += pokemonMainOverlay(pokemonData, speciesData, type1Data, type2Data);
+    } catch (error) {
+        console.error("Fehler beim Abrufen:", error);
     }
 }
 
 async function checkEvoChain(pokemonData, pokemon){
-    let response = await fetch(pokemon.evolution_chain.url);
-    let data = await response.json();
+    let evoLink = await fetch(pokemon.evolution_chain.url);
+    let evoData = await evoLink.json();
     
-    if (data.chain.evolves_to.length > 0) {
-        let evoChain1Response = await fetch(data.chain.species.url);
-        let evoChain1 = await evoChain1Response.json();
-        let pokemonData1Response = await fetch(evoChain1.varieties[0].pokemon.url);
-        let pokemonData1 = await pokemonData1Response.json();
+    checkFirstEvoChain(pokemonData, evoData);
+}
 
-        let evoChain2Response = await fetch(data.chain.evolves_to[0].species.url);
-        let evoChain2 = await evoChain2Response.json();
-        let pokemonData2Response = await fetch(evoChain2.varieties[0].pokemon.url);
-        let pokemonData2 = await pokemonData2Response.json();
-
-        if (data.chain.evolves_to[0].evolves_to.length > 0) {
-            if (data.chain.evolves_to[0].evolution_details.length > 0) {
-    
-                let evoChain3Response = await fetch(data.chain.evolves_to[0].evolves_to[0].species.url);
-                let evoChain3 = await evoChain3Response.json();
-                let pokemonData3Response = await fetch(evoChain3.varieties[0].pokemon.url);
-                let pokemonData3 = await pokemonData3Response.json();
-
-                document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += twoEvoChainOverlay(pokemonData1, pokemonData2, pokemonData3);
-            }
-        }else{
-            document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += oneEvoChainOverlay(pokemonData1, pokemonData2);
-        }
-        
+async function checkFirstEvoChain(pokemonData, evoData){
+    if (evoData.chain.evolves_to.length > 0) {
+        getfirstPokemonData(pokemonData, evoData);
     }else{
         document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += noEvoChainOverlay(); 
     }
 }
 
+async function getfirstPokemonData(pokemonData, evoData){
+    try {
+        let evoChain1Link = await fetch(evoData.chain.species.url);
+        let evoChain1Data = await evoChain1Link.json();
+        let pokemonData1Link = await fetch(evoChain1Data.varieties[0].pokemon.url);
+        let pokemonData1 = await pokemonData1Link.json();
+        getSecondPokemonData(pokemonData, evoData, pokemonData1);
+    } catch (error) {
+        console.error("Fehler beim Abrufen:", error); 
+    }
+}
+
+async function getSecondPokemonData(pokemonData, evoData, pokemonData1){
+    try {
+        let evoChain2Link = await fetch(evoData.chain.evolves_to[0].species.url);
+        let evoChain2Data = await evoChain2Link.json();
+        let pokemonData2Link = await fetch(evoChain2Data.varieties[0].pokemon.url);
+        let pokemonData2 = await pokemonData2Link.json();
+        checkSecondEvoChain(pokemonData, evoData, pokemonData1, pokemonData2);
+    } catch (error) {
+        console.error("Fehler beim Abrufen:", error); 
+    }
+}
+
+async function checkSecondEvoChain(pokemonData, evoData, pokemonData1, pokemonData2){
+    if (evoData.chain.evolves_to[0].evolves_to.length > 0) {
+        if (evoData.chain.evolves_to[0].evolution_details.length > 0) {
+            getThirdPokemonData(pokemonData, evoData, pokemonData1, pokemonData2);
+        }
+    }else{
+        document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += oneEvoChainOverlay(pokemonData1, pokemonData2);
+    }
+}
+
+async function getThirdPokemonData(pokemonData, evoData, pokemonData1, pokemonData2){
+    try {
+        let evoChain3Link = await fetch(evoData.chain.evolves_to[0].evolves_to[0].species.url);
+        let evoChain3Data = await evoChain3Link.json();
+        let pokemonData3Link = await fetch(evoChain3Data.varieties[0].pokemon.url);
+        let pokemonData3 = await pokemonData3Link.json();
+        document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += twoEvoChainOverlay(pokemonData1, pokemonData2, pokemonData3);
+    } catch (error) {
+        console.error("Fehler beim Abrufen:", error); 
+    }
+}
+
 async function loadMorePokemons() {
     try{
-        let response = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${pokemonCounter}&limit=20`);
-        let data = await response.json();
-        let pokemon = data.results;
+        let pokemonListLink = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${pokemonCounter}&limit=20`);  // Link zur nächsten Liste
+        let pokemonListData = await pokemonListLink.json();
+        let pokemons = pokemonListData.results;
         
-        await generatePokemons(pokemon);
+        await generatePokemons(pokemons);
         pokemonCounter += 20;
         
     }catch (error){
@@ -122,39 +159,35 @@ async function loadMorePokemons() {
 
 function switchBackward(pokemonData){
     if (pokemonData > 1) {
-        toggleRespPokemonOverlay(pokemonData);
+        togglePokemonOverlay(pokemonData);
         pokemonData -= 1;
-        toggleRespPokemonOverlay(pokemonData);
+        togglePokemonOverlay(pokemonData);
     }
 }
 
 function switchForward(pokemonData){
-    let pokemonContainer = document.getElementById('pokemon-cards-overlay');
-    let pokemons = pokemonContainer.querySelectorAll(":scope > div");
+    let pokemonCards = document.getElementById('pokemon-cards-overlay').querySelectorAll(":scope > div");
 
-    if (pokemonData < pokemons.length) {
-        toggleRespPokemonOverlay(pokemonData);
+    if (pokemonData < pokemonCards.length) {
+        togglePokemonOverlay(pokemonData);
         pokemonData += 1;
-        toggleRespPokemonOverlay(pokemonData);
+        togglePokemonOverlay(pokemonData);
     }else{
         loadMorePokemons();
     }
 }
 
 async function playAudio(pokemon){
-    let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
-    let data = await response.json();
-    new Audio(data.cries.latest).play();
+    let pokemonLink = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
+    let pokemonData = await pokemonLink.json();
+    new Audio(pokemonData.cries.latest).play();
 }
 
 function searchPokemon(){
-    let input = document.getElementById('search-bar').value;
-    input = input.toLowerCase();
-
-    for (let i = 1; i < names.length; i++) {
+    let input = document.getElementById('search-bar').value.toLowerCase();
+    for (let i = 0; i < names.length; i++) {
         if (input.length >=3) {
             if (!names[i].toLowerCase().includes(input)) {
-                console.log('kein Ergebnis');
                 document.getElementById(`${names[i]}`).classList.add('d_none');
             }else {
                 document.getElementById(`${names[i]}`).classList.remove('d_none');
@@ -164,5 +197,3 @@ function searchPokemon(){
         }
     }
 }
-
-document.getElementById("search-bar").addEventListener("input", searchPokemon);

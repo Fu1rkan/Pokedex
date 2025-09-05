@@ -1,4 +1,4 @@
-.resp_pokemon_overlay_bg{
+.main_pokemon_overlay_bg{
     position: fixed;
     top: 0;
     width: 100%;
@@ -34,7 +34,7 @@
     transform: scale(1);
 }
 
-.resp_pokemon_overlay{
+.pokemon_overlay{
     width: 400px;
     height: 600px;
     border: 4px solid #1f1f1f;
@@ -50,7 +50,7 @@
     z-index: 2;
 }
 
-.name_and_id_resp_overlay{
+.name_and_id_overlay{
     position: relative;
     display: flex;
     justify-content: center;
@@ -70,7 +70,7 @@ h2{
     font-size: 32px;
 }
 
-.pokemon_img_container_resp_overlay{
+.pokemon_img_container_overlay{
     width: 95%;
     height: 30%;
     display: flex;
@@ -92,22 +92,25 @@ h2{
     opacity: 0.2;
 }
 
-.pokemon_img_resp_overlay{
+.pokemon_img_overlay{
     height: 100%;
     width: auto;
     z-index: 1;
     transition: 200ms;
 }
 
-.pokemon_img_resp_overlay:hover{
-    transform: scale(1.05);
+.pokemon_img_overlay:hover{
+    transform: scale(1.04);
+    filter: drop-shadow(5px 5px 4px #2d2d2d);
+
 }
 
-.pokemon_img_resp_overlay:active{
+.pokemon_img_overlay:active{
     transform: scale(1);
+    filter: drop-shadow(5px 5px 4px #000000);
 }
 
-.pokemon_type_resp_overlay{
+.pokemon_type_overlay{
     height: 10%;
     width: 95%;
     background-color: transparent;
@@ -125,7 +128,7 @@ h2{
     }
 }
 
-.close_resp_overlay{
+.close_overlay{
     position: absolute;
     left: 8px;
     top: 8px;
@@ -146,7 +149,7 @@ h2{
 
 @media (max-width: 750px){
 
-    .resp_pokemon_overlay{
+    .pokemon_overlay{
         margin: 0 8px;
     }
 
@@ -157,12 +160,20 @@ h2{
 
 @media (max-height: 750px){
 
-    .resp_pokemon_overlay_bg{
+    .pokemon_overlay_bg{
         justify-content: flex-end;
     }
     
-    .resp_arrows img{
+    .arrows img{
         margin-bottom: 8px;
+    }
+
+    .pokemon_overlay{
+        margin-top: 60px;
+    }
+
+    .resp_arrows{
+        top: 60px;
     }
 }
 
@@ -173,11 +184,11 @@ h2{
         gap: 180px;
     }
 
-    .resp_pokemon_overlay{
-        margin: 0 0 24px 0;
+    .pokemon_overlay{
+        margin: 24px 0 16px 0;
     }
 
-    .resp_pokemon_overlay_bg{
+    .main_pokemon_overlay_bg{
         flex-direction: column;
     }
 
@@ -187,16 +198,16 @@ h2{
 }
 
 @media (max-width: 500px){
-    .resp_pokemon_overlay{
+    .pokemon_overlay{
         width: 300px;
         height: 450px;
     }
 
-    .name_and_id_resp_overlay p{
+    .name_and_id_overlay p{
         font-size: 20px;
     }
 
-    .close_resp_overlay{
+    .close_overlay{
         height: 12px;
     }
     

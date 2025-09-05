@@ -1,6 +1,6 @@
-function pokemonOverlayTypes(pokemonData, typeImg, type2Img){
+function pokemonCardOverlay(pokemonData, type1Data, type2Data){
     return `
-        <div class="pokemon_card" onclick="toggleRespPokemonOverlay(${pokemonData.id})" style="background-color: ${colorByType[pokemonData.types[0].type.name]}" id="${pokemonData.name}">
+        <div class="pokemon_card" onclick="togglePokemonOverlay(${pokemonData.id})" style="background-image: linear-gradient(90deg, ${colorByType[type1Data.name]} 30%, ${colorByType[type2Data.name]} 70%)" id="${pokemonData.name}">
             <div class="name_and_id">
                 <h3 id="pokemon-name">${pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</h3>
                 <p>#${pokemonData.id}</p>
@@ -9,47 +9,47 @@ function pokemonOverlayTypes(pokemonData, typeImg, type2Img){
                 <img src="${pokemonData.sprites.other['official-artwork'].front_default}" alt="" class="pokemon_img">
             </div>
             <div class="pokemon_type">
-                ${type(typeImg, type2Img, pokemonData)}
+                ${type(type1Data, type2Data, pokemonData)}
             </div>
         </div>
     `
 }
 
-function type(typeImg, type2Img, pokemonData){
+function type(type1Data, type2Data, pokemonData){
     if (pokemonData.types.length > 1) {
         return `
             <div class="pokemon_type_container">
-                <img src="${typeImg}" alt="">
+                <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
             </div>
             <div class="pokemon_type_container">
-                <img src="${type2Img}" alt="">
+                <img src="${type2Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
             </div>
         `
     }else{
         return `
             <div class="pokemon_type_container">
-                <img src="${typeImg}" alt="">
+                <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
             </div>
         `
     }
     
 }
 
-function pokemonMainOverlay(pokemonData, species, typeImg, typeImg2){
+function pokemonMainOverlay(pokemonData, species, type1Data, type2Data){
     return `
         <img src="./img/left-arrow.png" alt="" class="d_none switch_arrows" id="switch-arrow${pokemonData.id}" onclick="switchBackward(${pokemonData.id})">
-        <div class="resp_pokemon_overlay d_none" id="pokemon${pokemonData.id}">
-            <div class="name_and_id_resp_overlay">
-                <img src="./img/close.png" alt="" onclick="toggleRespPokemonOverlay(${pokemonData.id})" class="close_resp_overlay">
+        <div class="pokemon_overlay d_none" id="pokemon${pokemonData.id}">
+            <div class="name_and_id_overlay">
+                <img src="./img/close.png" alt="" onclick="togglePokemonOverlay(${pokemonData.id})" class="close_overlay">
                 <h2>${pokemonData.name.charAt(0).toUpperCase() + pokemonData.name.slice(1)}</h2>
                 <p>#${pokemonData.id}</p>
             </div>
-            <div class="pokemon_img_container_resp_overlay" style="background-color: ${colorByType[pokemonData.types[0].type.name]}">
-                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_resp_overlay" onclick="playAudio(${pokemonData.id})">
+            <div class="pokemon_img_container_overlay" style="background-image: linear-gradient(90deg, ${colorByType[type1Data.name]} 30%, ${colorByType[type2Data.name]} 70%)">
+                <img src="${pokemonData.sprites.other['official-artwork'].front_default}" class="pokemon_img_overlay" onclick="playAudio(${pokemonData.id})">
                 <img src="./img/pokeball.png" alt="" class="pokeball_bg">
             </div>
-            <div class="pokemon_type_resp_overlay">
-                ${overlayType(pokemonData,typeImg, typeImg2)}
+            <div class="pokemon_type_overlay">
+                ${overlayType(pokemonData, type1Data, type2Data)}
             </div>
             <div class="pokemon_info_bar">
                 <div class="pokemon_info_type pokemon_info_type_border" onclick="setActiveOverlay('info-about${pokemonData.id}', 'about-overlay${pokemonData.id}', ${pokemonData.id})" id="info-about${pokemonData.id}">about</div>
@@ -145,15 +145,15 @@ function pokemonMainOverlay(pokemonData, species, typeImg, typeImg2){
     `
 }
 
-function overlayType(pokemonData, typeImg, typeImg2){
+function overlayType(pokemonData, type1Data, type2Data){
     if (pokemonData.types.length > 1) {
         return `
-            <img src="${typeImg}" alt="">
-            <img src="${typeImg2}" alt="">
+            <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
+            <img src="${type2Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
         `
     }else{
         return `
-            <img src="${typeImg}" alt="">
+            <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
         `
     }
 }
@@ -196,7 +196,7 @@ function loadMorePokemonsTemp(){
 
 function bleurBg(pokemonData){
     return`
-        <div class="bleur_bg" onclick="toggleRespPokemonOverlay(${pokemonData})" id="bleur-bg">
+        <div class="bleur_bg" onclick="togglePokemonOverlay(${pokemonData})" id="bleur-bg">
         </div>
     `
 }

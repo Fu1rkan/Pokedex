@@ -36,6 +36,12 @@ footer h2 a{
     transform: scale(1.1);
 }
 
+img{
+    width: auto;
+    height: 40px;
+    cursor: pointer;
+}
+
 @media (max-width: 600px){
     footer{
         padding: 32px 40px;
