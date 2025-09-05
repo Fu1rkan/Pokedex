@@ -30,7 +30,7 @@ let progress = 0;
 async function generatePokemons(pokemons){
     for (let i = 0; i < pokemons.length; i++) {
         try {
-            loadingBar();
+            loadingBar(pokemons);
             let pokemonLink = await fetch(pokemons[i].url);
             let pokemonData = await pokemonLink.json();
             await getPokemonInfos(pokemonData);
@@ -40,20 +40,6 @@ async function generatePokemons(pokemons){
         }
     }
     resetLoadingBar();
-}
-
-function resetLoadingBar(){
-    progress = 0;
-    document.getElementById('progress').innerHTML = "";
-    document.getElementById('progress').innerHTML += `${progress}%`;
-    document.getElementById('loading-progress').style.width = `${progress}%`;
-}
-
-function loadingBar(){
-    progress += 5;
-    document.getElementById('progress').innerHTML = "";
-    document.getElementById('progress').innerHTML += `${progress}%`;
-    document.getElementById('loading-progress').style.width = `${progress}%`;
 }
 
 async function getPokemonInfos(pokemonData){
@@ -67,6 +53,20 @@ async function getPokemonInfos(pokemonData){
     } catch (error) {
         console.error("Fehler beim Überschreiben in HTML:", error);
     }
+}
+
+function loadingBar(pokemons){
+    progress += (100 / pokemons.length);
+    document.getElementById('progress').innerHTML = "";
+    document.getElementById('progress').innerHTML += `${progress}%`;
+    document.getElementById('loading-progress').style.width = `${progress}%`;
+}
+
+function resetLoadingBar(){
+    progress = 0;
+    document.getElementById('progress').innerHTML = "";
+    document.getElementById('progress').innerHTML += `${progress}%`;
+    document.getElementById('loading-progress').style.width = `${progress}%`;
 }
 
 async function playAudio(pokemon){
