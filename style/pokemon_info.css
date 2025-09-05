@@ -118,7 +118,6 @@ td{
     gap: 8px;
     font-size: 16px;
     width: 10%;
-    filter: invert(1);
 }
 
 @media (max-width: 500px){

@@ -4,6 +4,7 @@
 @import url(./footer.css);
 @import url(./pokemon_overlay.css);
 @import url(./pokemon_info.css);
+@import url(./loading_screen.css);
 
 *{
     margin: 0;
