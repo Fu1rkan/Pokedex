@@ -48,7 +48,7 @@ function switchBackward(pokemonData){
     }
 }
 
-function switchForward(pokemonData){
+async function switchForward(pokemonData){
     let pokemonCards = document.getElementById('pokemon-cards-overlay').querySelectorAll(":scope > div");
 
     if (pokemonData < pokemonCards.length) {
@@ -56,6 +56,7 @@ function switchForward(pokemonData){
         pokemonData += 1;
         togglePokemonOverlay(pokemonData);
     }else{
-        loadMorePokemons();
+        await loadMorePokemons();
+        document.getElementById('my-body').classList.add('o_h');
     }
 }
