@@ -1,6 +1,8 @@
+let results = 0;
+
 async function loadPokemon() {
     try{
-        document.getElementById('loading-screen').classList.remove('d_none')
+        document.getElementById('loading-screen').classList.remove('d_none');
         let pokemonsLink = await fetch(`https://pokeapi.co/api/v2/pokemon`);
         let pokemons = await pokemonsLink.json();
         pokemons = pokemons.results;
@@ -15,15 +17,25 @@ async function loadPokemon() {
 
 async function loadMorePokemons() {
     try{
-        document.getElementById('loading-screen').classList.remove('d_none')
-        let pokemonListLink = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${pokemonCounter}&limit=20`);  // Link zur nächsten Liste
-        let pokemonListData = await pokemonListLink.json();
-        let pokemons = pokemonListData.results;
-        await generatePokemons(pokemons);
+        document.getElementById('my-body').classList.add('o_h');
+        document.getElementById('loading-screen').classList.remove('d_none');
+        await getNewPokemonList();
         pokemonCounter += 20;
         currentNames = names;
         document.getElementById('loading-screen').classList.add('d_none');
+        document.getElementById('my-body').classList.remove('o_h');
     }catch (error){
+        console.error("Fehler beim Abrufen:", error);
+    }
+}
+
+async function getNewPokemonList(){
+    try {
+        let pokemonListLink = await fetch(`https://pokeapi.co/api/v2/pokemon/?offset=${pokemonCounter}&limit=20`);
+        let pokemonListData = await pokemonListLink.json();
+        let pokemons = pokemonListData.results;
+        await generatePokemons(pokemons);
+    } catch (error) {
         console.error("Fehler beim Abrufen:", error);
     }
 }
@@ -45,20 +57,5 @@ function switchForward(pokemonData){
         togglePokemonOverlay(pokemonData);
     }else{
         loadMorePokemons();
-    }
-}
-
-function searchPokemon(){
-    let input = document.getElementById('search-bar').value.toLowerCase();
-    for (let i = 0; i < currentNames.length; i++) {
-        if (input.length >=3) {
-            if (!currentNames[i].toLowerCase().includes(input)) {
-                document.getElementById(`${currentNames[i]}`).classList.add('d_none');
-            }else {
-                document.getElementById(`${currentNames[i]}`).classList.remove('d_none');
-            }
-        }else{
-            document.getElementById(`${currentNames[i]}`).classList.remove('d_none');
-        }
     }
 }

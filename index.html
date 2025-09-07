@@ -15,6 +15,7 @@
             <h1><a href="#">Pokedex</a></h1>
             <label for="search-bar">
                 <input type="text" placeholder="name" id="search-bar" onkeyup="searchPokemon()">
+                <p class="d_none" id="check-letters">min. 3 Letters</p>
             </label>
         </nav>
 
@@ -22,7 +23,9 @@
 
     <main>
 
-        <section class="pokemon_cards_overlay" id="pokemon-cards-overlay"></section>
+        <section class="pokemon_cards_overlay" id="pokemon-cards-overlay">
+            <h2 class="d_none" id="no-results">No Results</h2>
+        </section>
 
         <section class="load_more_pokemons" id="load-more-pokemons">
             <button class="load_more_button" onclick="loadMorePokemons()">load more</button>
@@ -61,5 +64,6 @@
     <script src="./script/evo_chain.js"></script>
     <script src="./script/load_pokemons.js"></script>
     <script src="./script/types.js"></script>
+    <script src="./script/search_pokemons.js"></script>
 </body>
 </html>

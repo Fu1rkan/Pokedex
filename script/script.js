@@ -55,6 +55,12 @@ async function getPokemonInfos(pokemonData){
     }
 }
 
+async function playAudio(pokemon){
+    let pokemonLink = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
+    let pokemonData = await pokemonLink.json();
+    new Audio(pokemonData.cries.latest).play();
+}
+
 function loadingBar(pokemons){
     progress += (100 / pokemons.length);
     document.getElementById('progress').innerHTML = "";
@@ -67,10 +73,4 @@ function resetLoadingBar(){
     document.getElementById('progress').innerHTML = "";
     document.getElementById('progress').innerHTML += `${progress}%`;
     document.getElementById('loading-progress').style.width = `${progress}%`;
-}
-
-async function playAudio(pokemon){
-    let pokemonLink = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
-    let pokemonData = await pokemonLink.json();
-    new Audio(pokemonData.cries.latest).play();
 }

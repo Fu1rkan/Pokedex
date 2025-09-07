@@ -33,3 +33,34 @@
 .o_h{
     overflow: hidden;
 }
+
+.opacity_0{
+    opacity: 0;
+}
+
+body {
+  --sb-track-color: #ff0000;
+  --sb-thumb-color: #ffffff;
+  --sb-size: 23px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 16px;
+  border: 4px solid #101010;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color)
+                     var(--sb-track-color);
+  }
+}
