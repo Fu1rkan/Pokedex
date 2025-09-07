@@ -97,6 +97,10 @@
     .pokemon_cards_overlay{
         min-height: calc(100vh - 221px);
     }
+
+    ::-webkit-scrollbar{
+        display: none;
+    }
 }
 
 @media (max-width: 450px){
