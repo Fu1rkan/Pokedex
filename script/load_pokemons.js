@@ -3,12 +3,13 @@ let results = 0;
 async function loadPokemon() {
     try{
         document.getElementById('loading-screen').classList.remove('d_none');
+        document.getElementById('my-body').classList.add('o_h');
         let pokemonsLink = await fetch(`https://pokeapi.co/api/v2/pokemon`);
         let pokemons = await pokemonsLink.json();
-        pokemons = pokemons.results;
-        await generatePokemons(pokemons);
+        await generatePokemons(pokemons.results);
         pokemonCounter += 20;
         currentNames = names;
+        document.getElementById('my-body').classList.remove('o_h');
         document.getElementById('loading-screen').classList.add('d_none')
     }catch (error){
         console.error("Fehler beim Abrufen:", error);
@@ -17,13 +18,13 @@ async function loadPokemon() {
 
 async function loadMorePokemons() {
     try{
-        document.getElementById('my-body').classList.add('o_h');
         document.getElementById('loading-screen').classList.remove('d_none');
+        document.getElementById('my-body').classList.add('o_h');
         await getNewPokemonList();
         pokemonCounter += 20;
         currentNames = names;
-        document.getElementById('loading-screen').classList.add('d_none');
         document.getElementById('my-body').classList.remove('o_h');
+        document.getElementById('loading-screen').classList.add('d_none');
     }catch (error){
         console.error("Fehler beim Abrufen:", error);
     }
