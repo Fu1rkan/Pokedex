@@ -154,6 +154,15 @@ h2{
 .resp_arrows img{
     width: 56px;
     height: auto;
+    transition: 250ms;
+}
+
+.resp_arrows img:hover{
+    transform: scale(1.1);
+}
+
+.resp_arrows img:active{
+    transform: scale(1);
 }
 
 @media (max-width: 750px){

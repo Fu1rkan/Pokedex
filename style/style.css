@@ -26,10 +26,27 @@
     display: none;
 }
 
+.opacity0{
+    opacity: 0;
+    z-index: -1;
+}
+
 .t_bold{
     font-weight: 700;
 }
 
 .o_h{
     overflow: hidden;
+}
+
+.filter{
+    filter: invert(0.4);
+}
+
+.filter:hover{
+    transform: scale(1) !important;
+}
+
+.zi2{
+    z-index: 2;
 }

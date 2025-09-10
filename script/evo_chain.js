@@ -1,5 +1,5 @@
-async function checkEvoChain(pokemonData, pokemon){
-    let evoLink = await fetch(pokemon.evolution_chain.url);
+async function checkEvoChain(pokemonData, pokemonSpecies){
+    let evoLink = await fetch(pokemonSpecies.evolution_chain.url);
     let evoData = await evoLink.json();
     
     checkFirstEvoChain(pokemonData, evoData);

@@ -10,10 +10,12 @@ function checkInputValueLenght(currentNames, input){
     if (input.length >=3) {
         filterPokemonResults(currentNames, input);
         noResultsBySearching(currentNames, input);
+        document.getElementById('load-more-button').classList.add('opacity0');
     }else{
         document.getElementById(`${currentNames}`).classList.remove('d_none');
         document.getElementById(`no-results`).classList.add('d_none');
         document.getElementById(`check-letters`).classList.remove('d_none');
+        document.getElementById('load-more-button').classList.remove('opacity0');
     }
     infoAboutLetterLength(input);
 }

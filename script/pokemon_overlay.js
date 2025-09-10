@@ -1,13 +1,15 @@
-function togglePokemonOverlay(pokemonData){
+async function togglePokemonOverlay(pokemonData){
     let bleurOverlay =  document.getElementById('bleur-overlay');
     let container = bleurOverlay.querySelectorAll(":scope > div");
-
-    classListChanges(pokemonData);
-
-    if (1 <= container.length) {
-        bleurOverlay.innerHTML = "";
+    if (overlayLoader === false) {
+        classListChanges(pokemonData);
+        if (1 <= container.length) {
+            bleurOverlay.innerHTML = "";
+        }else{
+            bleurOverlay.innerHTML += bleurBg(pokemonData);
+        }
     }else{
-        bleurOverlay.innerHTML += bleurBg(pokemonData);
+        loadScreenPokemonOverlay(bleurOverlay, container, pokemonData);
     }
 }
 
@@ -19,6 +21,7 @@ function classListChanges(pokemonData){
     document.getElementById(`switch-arrow-right-resp${pokemonData}`).classList.toggle('d_none');
     document.getElementById(`switch-arrow-resp${pokemonData}`).classList.toggle('d_none');
     document.getElementById('my-body').classList.toggle('o_h');
+    document.getElementById('search-bar').classList.toggle('d_none');
 }
 
 function setActiveOverlay(activeBar, activeOverlay, pokemonId){

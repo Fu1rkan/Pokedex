@@ -1,8 +1,18 @@
 let pokemonCounter = 0;
 
+let pokemonOverlayCounter = 0;
+
+let progress = 0;
+
 let names = [];
 
 let currentNames = [];
+
+let fetchedPokemons = ['placeholder'];
+
+let results = 0;
+
+let overlayLoader = false;
 
 let colorByType = {
     "normal":   "#919aa2",
@@ -25,40 +35,59 @@ let colorByType = {
     "fairy":    "#D685AD"
 }
 
-let progress = 0;
-
 async function generatePokemons(pokemons){
-    for (let i = 0; i < pokemons.length; i++) {
+    for (let pokemonIndex = 0; pokemonIndex < pokemons.length; pokemonIndex++) {
         try {
             loadingBar(pokemons);
-            let pokemonLink = await fetch(pokemons[i].url);
+            let pokemonLink = await fetch(pokemons[pokemonIndex].url);
             let pokemonData = await pokemonLink.json();
+            fetchedPokemons.push(pokemonData)
             await getPokemonInfos(pokemonData);
             names.push(pokemonData.name);
         } catch (error) {
             console.error("Fehler beim Abrufen:", error);
         }
     }
-    resetLoadingBar();
+}
+
+async function generateMainOverviewData() {
+    overlayLoader = true;
+    for (let pokemonIndex = 1 + pokemonOverlayCounter; pokemonIndex < fetchedPokemons.length; pokemonIndex++) {
+        let speciesLink = await fetch(fetchedPokemons[pokemonIndex].species.url);
+        let speciesData = await speciesLink.json();
+        await checkEvoChain(fetchedPokemons[pokemonIndex], speciesData);
+        renderPokemonOverlay(pokemonIndex, fetchedPokemons, speciesData);
+    }
+    overlayLoader = false;
+    pokemonOverlayCounter += 20;
+}
+
+function renderPokemonOverlay(pokemonIndex, fetchedPokemons, speciesData){
+    document.getElementById(`about-overlay${pokemonIndex}`).innerHTML += aboutOverlay(fetchedPokemons[pokemonIndex], speciesData);
+    document.getElementById(`stats-overlay${pokemonIndex}`).innerHTML += statsOverlay(fetchedPokemons[pokemonIndex]);        
+    document.getElementById(`right-arrow${pokemonIndex}`).innerHTML += rightArrow(fetchedPokemons[pokemonIndex]);
+    document.getElementById(`left-arrow${pokemonIndex}`).innerHTML += leftArrow(fetchedPokemons[pokemonIndex]);
+    document.getElementById(`resp-arrows${pokemonIndex}`).innerHTML += respArrows(fetchedPokemons[pokemonIndex]);
 }
 
 async function getPokemonInfos(pokemonData){
     try {
         let type1Link = await fetch(pokemonData.types[0].type.url);
         let type1Data = await type1Link.json();
-        let speciesLink = await fetch(pokemonData.species.url);
-        let speciesData = await speciesLink.json();
-        await checkType(pokemonData, type1Data, speciesData);
-        await checkEvoChain(pokemonData, speciesData);
+        await checkType(pokemonData, type1Data);
     } catch (error) {
         console.error("Fehler beim Überschreiben in HTML:", error);
     }
 }
 
 async function playAudio(pokemon){
-    let pokemonLink = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
-    let pokemonData = await pokemonLink.json();
-    new Audio(pokemonData.cries.latest).play();
+    try {
+        let pokemonLink = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
+        let pokemonData = await pokemonLink.json();
+        new Audio(pokemonData.cries.latest).play();
+    } catch (error) {
+        console.error("Fehler beim Abrufen:", error);
+    }
 }
 
 function loadingBar(pokemons){
