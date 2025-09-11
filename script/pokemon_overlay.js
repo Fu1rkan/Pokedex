@@ -34,3 +34,8 @@ function setActiveOverlay(activeBar, activeOverlay, pokemonId){
     document.getElementById(activeBar).classList.add('pokemon_info_type_border');
     document.getElementById(activeOverlay).classList.remove('d_none');
 }
+
+function changeArrow(){
+    document.getElementById(`switch-arrow1`).classList.add('filter');
+    document.getElementById(`switch-arrow-resp1`).classList.add('filter');
+}

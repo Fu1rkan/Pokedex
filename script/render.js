@@ -3,19 +3,6 @@ function renderPokemonCard(pokemonData, type1Data, type2Data){
     document.getElementById('main-pokemon-overlay').innerHTML += pokemonMainOverlay(pokemonData, type1Data, type2Data);
 }
 
-function renderPokemonOverlay(pokemonIndex, fetchedPokemons, speciesData){
-    document.getElementById(`about-overlay${pokemonIndex}`).innerHTML = "";
-    document.getElementById(`about-overlay${pokemonIndex}`).innerHTML += aboutOverlay(fetchedPokemons[pokemonIndex], speciesData);
-    document.getElementById(`stats-overlay${pokemonIndex}`).innerHTML = "";      
-    document.getElementById(`stats-overlay${pokemonIndex}`).innerHTML += statsOverlay(fetchedPokemons[pokemonIndex]);        
-    document.getElementById(`right-arrow${pokemonIndex}`).innerHTML = "";
-    document.getElementById(`right-arrow${pokemonIndex}`).innerHTML += rightArrow(fetchedPokemons[pokemonIndex]);
-    document.getElementById(`left-arrow${pokemonIndex}`).innerHTML = "";
-    document.getElementById(`left-arrow${pokemonIndex}`).innerHTML += leftArrow(fetchedPokemons[pokemonIndex]);
-    document.getElementById(`resp-arrows${pokemonIndex}`).innerHTML = "";
-    document.getElementById(`resp-arrows${pokemonIndex}`).innerHTML += respArrows(fetchedPokemons[pokemonIndex]);
-}
-
 function renderTypes(pokemonData, type1Data, type2Data){
     if (pokemonData.types.length > 1) {
         return twoTypeTemp(type1Data, type2Data);
@@ -24,12 +11,29 @@ function renderTypes(pokemonData, type1Data, type2Data){
     }
 }
 
-function renderAboutOverlay(){
-
+function renderPokemonOverlay(pokemonIndex, fetchedPokemons, speciesData){     
+    renderAboutOverlay(pokemonIndex, fetchedPokemons, speciesData);
+    renderStatsOverlay(pokemonIndex, fetchedPokemons);
+    renderArrows(pokemonIndex, fetchedPokemons);
 }
 
-function renderStatsOverlay(){
+function renderAboutOverlay(pokemonIndex, fetchedPokemons, speciesData){
+    document.getElementById(`about-overlay${pokemonIndex}`).innerHTML = "";
+    document.getElementById(`about-overlay${pokemonIndex}`).innerHTML += aboutOverlay(fetchedPokemons[pokemonIndex], speciesData); 
+}
 
+function renderStatsOverlay(pokemonIndex, fetchedPokemons){
+    document.getElementById(`stats-overlay${pokemonIndex}`).innerHTML = "";      
+    document.getElementById(`stats-overlay${pokemonIndex}`).innerHTML += statsOverlay(fetchedPokemons[pokemonIndex]);  
+}
+
+function renderArrows(pokemonIndex, fetchedPokemons) {
+    document.getElementById(`right-arrow${pokemonIndex}`).innerHTML = "";
+    document.getElementById(`right-arrow${pokemonIndex}`).innerHTML += rightArrow(fetchedPokemons[pokemonIndex]);
+    document.getElementById(`left-arrow${pokemonIndex}`).innerHTML = "";
+    document.getElementById(`left-arrow${pokemonIndex}`).innerHTML += leftArrow(fetchedPokemons[pokemonIndex]);
+    document.getElementById(`resp-arrows${pokemonIndex}`).innerHTML = "";
+    document.getElementById(`resp-arrows${pokemonIndex}`).innerHTML += respArrows(fetchedPokemons[pokemonIndex]);
 }
 
 function renderEvoChain(pokemonData, pokemonData1, pokemonData2, pokemonData3){
