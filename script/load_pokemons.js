@@ -10,6 +10,8 @@ async function loadMorePokemons(){
         currentNames = names;
         await generateMainOverviewData();
     }
+    checkLimit();
+    document.getElementById('switch-arrow1').classList.add('filter');
 }
 
 async function loadMorePokemonsBySwitch(){
@@ -55,15 +57,11 @@ async function switchForward(pokemonData){
     let pokemonCards = document.getElementById('pokemon-cards-overlay').querySelectorAll(":scope > div");
 
     if (pokemonData < pokemonCards.length) {
-        togglePokemonOverlay(pokemonData);
-        pokemonData += 1;
-        togglePokemonOverlay(pokemonData);
+        switchOverlay(pokemonData);
     }else{
         await loadMorePokemonsBySwitch();
         document.getElementById('my-body').classList.add('o_h');
-        togglePokemonOverlay(pokemonData);
-        pokemonData += 1;
-        togglePokemonOverlay(pokemonData);
+        switchOverlay(pokemonData);
         document.getElementById('search-bar').value = "";
         searchPokemon();
     }
@@ -98,4 +96,18 @@ async function loadScreenPokemonOverlay(bleurOverlay, container, pokemonData){
     deactiveLoadscreen();
     document.getElementById('loading-bar').classList.remove('d_none');
     document.getElementById('my-body').classList.add('o_h');
+}
+
+function loadingBar(pokemons){
+    progress += (100 / pokemons.length);
+    document.getElementById('progress').innerHTML = "";
+    document.getElementById('progress').innerHTML += `${progress}%`;
+    document.getElementById('loading-progress').style.width = `${progress}%`;
+}
+
+function resetLoadingBar(){
+    progress = 0;
+    document.getElementById('progress').innerHTML = "";
+    document.getElementById('progress').innerHTML += `${progress}%`;
+    document.getElementById('loading-progress').style.width = `${progress}%`;
 }

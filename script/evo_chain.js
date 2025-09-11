@@ -9,7 +9,7 @@ async function checkFirstEvoChain(pokemonData, evoData){
     if (evoData.chain.evolves_to.length > 0) {
         await getfirstPokemonData(pokemonData, evoData);
     }else{
-        document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += noEvoChainOverlay(); 
+        renderEvoChain(pokemonData);
     }
 }
 
@@ -43,7 +43,7 @@ async function checkSecondEvoChain(pokemonData, evoData, pokemonData1, pokemonDa
             await getThirdPokemonData(pokemonData, evoData, pokemonData1, pokemonData2);
         }
     }else{
-        document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += oneEvoChainOverlay(pokemonData1, pokemonData2);
+        renderEvoChain(pokemonData, pokemonData1, pokemonData2);
     }
 }
 
@@ -53,7 +53,7 @@ async function getThirdPokemonData(pokemonData, evoData, pokemonData1, pokemonDa
         let evoChain3Data = await evoChain3Link.json();
         let pokemonData3Link = await fetch(evoChain3Data.varieties[0].pokemon.url);
         let pokemonData3 = await pokemonData3Link.json();
-        document.getElementById(`evo-chain-overlay${pokemonData.id}`).innerHTML += twoEvoChainOverlay(pokemonData1, pokemonData2, pokemonData3);
+        renderEvoChain(pokemonData, pokemonData1, pokemonData2, pokemonData3)
     } catch (error) {
         console.error("Fehler beim Abrufen:", error); 
     }

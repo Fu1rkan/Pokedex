@@ -12,7 +12,7 @@ let fetchedPokemons = ['placeholder'];
 
 let results = 0;
 
-let overlayLoader = false;
+let overlayLoader = true;
 
 let colorByType = {
     "normal":   "#919aa2",
@@ -42,8 +42,8 @@ async function generatePokemons(pokemons){
             let pokemonLink = await fetch(pokemons[pokemonIndex].url);
             let pokemonData = await pokemonLink.json();
             fetchedPokemons.push(pokemonData)
-            await getPokemonInfos(pokemonData);
             names.push(pokemonData.name);
+            await getPokemonInfos(pokemonData);
         } catch (error) {
             console.error("Fehler beim Abrufen:", error);
         }
@@ -60,14 +60,7 @@ async function generateMainOverviewData() {
     }
     overlayLoader = false;
     pokemonOverlayCounter += 20;
-}
-
-function renderPokemonOverlay(pokemonIndex, fetchedPokemons, speciesData){
-    document.getElementById(`about-overlay${pokemonIndex}`).innerHTML += aboutOverlay(fetchedPokemons[pokemonIndex], speciesData);
-    document.getElementById(`stats-overlay${pokemonIndex}`).innerHTML += statsOverlay(fetchedPokemons[pokemonIndex]);        
-    document.getElementById(`right-arrow${pokemonIndex}`).innerHTML += rightArrow(fetchedPokemons[pokemonIndex]);
-    document.getElementById(`left-arrow${pokemonIndex}`).innerHTML += leftArrow(fetchedPokemons[pokemonIndex]);
-    document.getElementById(`resp-arrows${pokemonIndex}`).innerHTML += respArrows(fetchedPokemons[pokemonIndex]);
+    checkLimitOverlay();
 }
 
 async function getPokemonInfos(pokemonData){
@@ -90,16 +83,14 @@ async function playAudio(pokemon){
     }
 }
 
-function loadingBar(pokemons){
-    progress += (100 / pokemons.length);
-    document.getElementById('progress').innerHTML = "";
-    document.getElementById('progress').innerHTML += `${progress}%`;
-    document.getElementById('loading-progress').style.width = `${progress}%`;
+function checkLimit(){
+    if (names.length >= 800) {
+        document.getElementById('load-more-button').classList.add('zi-1');
+    }
 }
 
-function resetLoadingBar(){
-    progress = 0;
-    document.getElementById('progress').innerHTML = "";
-    document.getElementById('progress').innerHTML += `${progress}%`;
-    document.getElementById('loading-progress').style.width = `${progress}%`;
+function checkLimitOverlay(){
+    if (names.length >= 800){
+        document.getElementById('switch-arrow-right800').classList.add('unvisible');
+    }
 }

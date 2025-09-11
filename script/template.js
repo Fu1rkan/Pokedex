@@ -49,7 +49,7 @@ function pokemonMainOverlay(pokemonData, type1Data, type2Data){
                 <img src="./img/pokeball.png" alt="" class="pokeball_bg">
             </div>
             <div class="pokemon_type_overlay">
-                ${overlayType(pokemonData, type1Data, type2Data)}
+                ${renderTypes(pokemonData, type1Data, type2Data)}
             </div>
             <div class="pokemon_info_bar">
                 <div class="pokemon_info_type pokemon_info_type_border" onclick="setActiveOverlay('info-about${pokemonData.id}', 'about-overlay${pokemonData.id}', ${pokemonData.id})" id="info-about${pokemonData.id}">about</div>
@@ -65,26 +65,26 @@ function pokemonMainOverlay(pokemonData, type1Data, type2Data){
     `
 }
 
-function overlayType(pokemonData, type1Data, type2Data){
-    if (pokemonData.types.length > 1) {
-        return `
-            <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
-            <img src="${type2Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
-        `
-    }else{
-        return `
-            <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
-        `
-    }
+function oneTypeTemp(type1Data){
+    return `
+        <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
+    `
 }
 
-function noEvoChainOverlay(){
+function twoTypeTemp(type1Data, type2Data){
+    return `
+        <img src="${type1Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
+        <img src="${type2Data.sprites['generation-viii']['sword-shield'].name_icon}" alt="">
+    `
+}
+
+function noEvoChainOverlayTemp(){
     return `
         <h4>has no Evo Chain</h4>
     `
 }
 
-function oneEvoChainOverlay(pokemonData1, pokemonData2){
+function oneEvoChainOverlayTemp(pokemonData1, pokemonData2){
     return `
         <img src="${pokemonData1.sprites.other['official-artwork'].front_default}" class="evo_chain_img">
         <div class="evo_demand">
@@ -94,7 +94,7 @@ function oneEvoChainOverlay(pokemonData1, pokemonData2){
     `
 }
 
-function twoEvoChainOverlay(pokemonData1, pokemonData2, pokemonData3){
+function twoEvoChainOverlayTemp(pokemonData1, pokemonData2, pokemonData3){
     return `
         <img src="${pokemonData1.sprites.other['official-artwork'].front_default}" class="evo_chain_img">
         <div class="evo_demand">
