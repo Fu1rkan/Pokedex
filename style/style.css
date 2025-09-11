@@ -14,6 +14,12 @@
     touch-action: manipulation;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .font{
     font-family: 'Open Sans';
     src: url(../fonts/OpenSans-Italic-VariableFont_wdth\,wght.ttf),

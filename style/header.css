@@ -1,11 +1,14 @@
 header{
     position: fixed;
     top: 0;
-    width: calc(100% - 160px);
-    padding: 24px 80px;
+    width: 100%;
+    padding: 24px 0px;
     background-color: rgb(255, 0, 0);
     box-shadow: 0 0 16px 0px rgb(255, 0, 0);
     z-index: 2;
+    display: flex;
+    justify-content: center;
+    position: relative;
 }
 
 nav{
@@ -13,6 +16,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     position: relative;
+    width: 90%;
 }
 
 h1{
@@ -54,6 +58,12 @@ input:focus{
     outline: none;
 }
 
+@media (min-width: 1440px){
+    nav{
+        max-width: 1440px;
+    }
+}
+
 @media (max-width: 850px){
     label{
         position: relative;
@@ -62,8 +72,7 @@ input:focus{
     }
 
     header{
-        padding: 24px 64px;
-        width: calc(100% - 128px);
+        padding: 24px 0;
     }
 }
 
